@@ -1,11 +1,11 @@
+// pages/ml-recommendations.tsx
 "use client";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import CityComparisonChart from "../components/CityComparisonChart";
 import LoadingSpinner from "../components/LoadingSpinner";
+import CityComparisonChart from "../components/CityComparisonChart";
 
-
-export default function Recommendations() {
+export default function MLRecommendations() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [cities, setCities] = useState([]);
@@ -13,37 +13,36 @@ export default function Recommendations() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        const fetchCities = async () => {
+        const fetchMLRecommendations = async () => {
             setLoading(true);
             setError("");
 
             try {
-                // Using the full URL to reach your Django API
-                const res = await fetch(`http://127.0.0.1:8000/api/recommend-cities/?${searchParams.toString()}`);
+                // Use the full URL to call your Django ML endpoint
+                const res = await fetch(`http://127.0.0.1:8000/api/ml-recommendations/?${searchParams.toString()}`);
                 if (!res.ok) {
-                    throw new Error(`Error fetching recommendations: ${res.status}`);
+                    throw new Error(`Error fetching ML recommendations: ${res.status}`);
                 }
                 const data = await res.json();
                 setCities(data.recommended_cities || []);
             } catch (err) {
-                console.error("Failed to fetch recommendations:", err);
-                setError("Failed to fetch recommendations. Please try again.");
+                console.error("Failed to fetch ML recommendations:", err);
+                setError("Failed to fetch ML recommendations. Please try again.");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchCities();
+        fetchMLRecommendations();
     }, [searchParams]);
 
     const handleCityClick = (cityName: string) => {
-        // Navigate to the city details page using the city name.
         router.push(`/city-details/${encodeURIComponent(cityName)}`);
     };
 
     return (
         <div style={{ padding: "1rem" }}>
-            <h1>Recommended Cities</h1>
+            <h1>ML-Based Recommended Cities</h1>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
@@ -57,19 +56,27 @@ export default function Recommendations() {
                             <li
                                 key={index}
                                 style={{ cursor: "pointer", marginBottom: "1rem", padding: "0.5rem", border: "1px solid #ccc" }}
-                                onClick={() => handleCityClick(city.name)}
+                                onClick={() => handleCityClick(city.city)}
                             >
-                                <strong>{city.name}, {city.country}</strong>
-                                <p>Safety Index: {city.safety_index}</p>
-                                <p>Quality of Life: {city.quality_of_life_index}</p>
+                                <strong>{city.city}, {city.country}</strong>
+                                <p>Similarity Score: {city.similarity}</p>
                                 <p>Average Salary: ${city.average_salary}</p>
                                 <p>Average Rent: ${city.average_rent}</p>
+                                <p>Safety Index: {city.safety_index}</p>
+                                <p>Quality of Life: {city.quality_of_life_index}</p>
                             </li>
                         ))}
                     </ul>
                     <h2>Compare City Metrics</h2>
                     <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-                        <CityComparisonChart cities={cities} />
+                        <CityComparisonChart
+                            cities={cities.map(city => ({
+                                name: city.city,
+                                average_salary: city.average_salary,
+                                average_rent: city.average_rent,
+                                quality_of_life_index: city.quality_of_life_index
+                            }))}
+                        />
                     </div>
                 </>
             )}

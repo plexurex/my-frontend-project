@@ -42,7 +42,7 @@ const Preferences = () => {
         }));
     };
 
-    // Handles form submission
+    // Handles form submission with A/B testing (random routing)
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
     
@@ -61,8 +61,13 @@ const Preferences = () => {
             education_quality: preferences.education_quality ? "true" : "false",
         }).toString();
     
-        // Redirect to recommendations page with preferences as query params
-        router.push(`/recommendations?${params}`);
+        // Basic A/B test: randomly select rule-based or ML-based recommendations
+        const useMLModel = Math.random() < 0.5;
+        if (useMLModel) {
+            router.push(`/ml-recommendations?${params}`);
+        } else {
+            router.push(`/recommendations?${params}`);
+        }
     };
     
 
