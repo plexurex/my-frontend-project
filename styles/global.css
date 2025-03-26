@@ -1,28 +1,32 @@
 /* styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-  }
-  
-  /* Responsive container padding */
-  .container {
+}
+
+/* Responsive container padding */
+.container {
     padding: 1rem;
-  }
-  
-  /* Responsive styling for lists and charts */
-  ul {
+}
+
+/* Responsive styling for lists and charts */
+ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  li {
+}
+
+li {
     margin-bottom: 1rem;
     padding: 0.5rem;
     border: 1px solid #ccc;
-  }
-  
-  /* Spinner styling for loading indicator */
-  .spinner {
+}
+
+/* Spinner styling for loading indicator */
+.spinner {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #3498db;
     border-radius: 50%;
@@ -30,17 +34,16 @@ body {
     height: 40px;
     animation: spin 2s linear infinite;
     margin: 1rem auto;
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-  
-  /* Adjustments for smaller screens */
-  @media (max-width: 600px) {
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
     li {
-      font-size: 0.9rem;
+        font-size: 0.9rem;
     }
-  }
-  
+}

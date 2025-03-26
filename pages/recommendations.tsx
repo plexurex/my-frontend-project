@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import CityComparisonChart from "../components/CityComparisonChart";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-
 export default function Recommendations() {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -42,21 +41,21 @@ export default function Recommendations() {
     };
 
     return (
-        <div style={{ padding: "1rem" }}>
-            <h1>Recommended Cities</h1>
+        <div className="p-4">
+            <h1 className="text-2xl font-bold mb-4">Recommended Cities</h1>
             {loading ? (
                 <LoadingSpinner />
             ) : error ? (
-                <p style={{ color: "red" }}>{error}</p>
+                <p className="text-red-500">{error}</p>
             ) : cities.length === 0 ? (
                 <p>No matching cities found.</p>
             ) : (
                 <>
-                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                    <ul className="list-none p-0">
                         {cities.map((city, index) => (
                             <li
                                 key={index}
-                                style={{ cursor: "pointer", marginBottom: "1rem", padding: "0.5rem", border: "1px solid #ccc" }}
+                                className="cursor-pointer mb-4 p-2 border border-gray-300 hover:bg-gray-100 rounded"
                                 onClick={() => handleCityClick(city.name)}
                             >
                                 <strong>{city.name}, {city.country}</strong>
@@ -67,8 +66,8 @@ export default function Recommendations() {
                             </li>
                         ))}
                     </ul>
-                    <h2>Compare City Metrics</h2>
-                    <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+                    <h2 className="text-xl font-semibold mt-8 mb-4 text-center">Compare City Metrics</h2>
+                    <div className="max-w-3xl mx-auto">
                         <CityComparisonChart cities={cities} />
                     </div>
                 </>
