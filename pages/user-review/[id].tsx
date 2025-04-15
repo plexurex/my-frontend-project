@@ -48,32 +48,51 @@ const UserReview = () => {
     fetchRecommendation();
   }, [id]);
 
-  if (loading) return <p>Loading recommendation details...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
-  if (!recommendation) return <p>No recommendation found.</p>;
+  if (loading)
+    return <p className="text-body text-center">Loading recommendation details...</p>;
+  if (error)
+    return <p className="text-body text-error text-center">{error}</p>;
+  if (!recommendation)
+    return <p className="text-body text-center">No recommendation found.</p>;
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">
-        Recommendation for {recommendation.city_name}, {recommendation.country_name}
-      </h1>
-      <div className="mb-4">
-        <p><strong>User:</strong> {recommendation.user_name}</p>
-        {recommendation.user_image && (
-          <img
-            src={recommendation.user_image}
-            alt={recommendation.user_name}
-            className="w-24 h-24 rounded-full mb-4"
-          />
-        )}
-      </div>
-      <div className="space-y-2">
-        <p><strong>Safety:</strong> {recommendation.safety_rating}/5</p>
-        <p><strong>Food Price:</strong> {recommendation.food_price_rating}/5</p>
-        <p><strong>Culture & Entertainment:</strong> {recommendation.culture_rating}/5</p>
-        <p><strong>Affordability:</strong> {recommendation.affordability_rating}/5</p>
-        <p><strong>Accessibility:</strong> {recommendation.accessibility_rating}/5</p>
-        <p><strong>Quality of Life:</strong> {recommendation.quality_of_life_rating}/5</p>
+    <div className="container mx-auto p-6 max-w-2xl">
+      <div className="bg-surface p-6 rounded-medium shadow-medium">
+        <h1 className="text-h1 font-heading mb-4">
+          Recommendation for {recommendation.city_name}, {recommendation.country_name}
+        </h1>
+        <div className="mb-4 flex items-center space-x-4">
+          <p className="text-body">
+            <strong>User:</strong> {recommendation.user_name}
+          </p>
+          {recommendation.user_image && (
+            <img
+              src={recommendation.user_image}
+              alt={recommendation.user_name}
+              className="w-24 h-24 rounded-full shadow-subtle"
+            />
+          )}
+        </div>
+        <div className="space-y-2">
+          <p className="text-body">
+            <strong>Safety:</strong> {recommendation.safety_rating}/5
+          </p>
+          <p className="text-body">
+            <strong>Food Price:</strong> {recommendation.food_price_rating}/5
+          </p>
+          <p className="text-body">
+            <strong>Culture & Entertainment:</strong> {recommendation.culture_rating}/5
+          </p>
+          <p className="text-body">
+            <strong>Affordability:</strong> {recommendation.affordability_rating}/5
+          </p>
+          <p className="text-body">
+            <strong>Accessibility:</strong> {recommendation.accessibility_rating}/5
+          </p>
+          <p className="text-body">
+            <strong>Quality of Life:</strong> {recommendation.quality_of_life_rating}/5
+          </p>
+        </div>
       </div>
     </div>
   );

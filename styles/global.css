@@ -3,47 +3,109 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Define design tokens as CSS variables */
+:root {
+  /* Color Scheme */
+  --primary: #2563EB;
+  --secondary: #059669;
+  --accent: #8B5CF6;
+  --background: #F9FAFB;
+  --surface: #FFFFFF;
+  --text: #1F2937;
+  --subdued: #6B7280;
+  /* Feedback Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  /* Typography */
+  --font-ui: 'Inter', sans-serif;
+  --font-heading: 'Merriweather', serif;
+}
+
+/* Global Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: var(--font-ui);
+  background-color: var(--background);
+  color: var(--text);
 }
 
 /* Responsive container padding */
 .container {
-    padding: 1rem;
+  padding: 1rem;
 }
 
-/* Responsive styling for lists and charts */
+/* Base styling for lists */
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--subdued);
 }
 
 /* Spinner styling for loading indicator */
 .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
-    margin: 1rem auto;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  margin: 1rem auto;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* Adjustments for smaller screens */
+/* Media Query Adjustments for smaller screens */
 @media (max-width: 600px) {
-    li {
-        font-size: 0.9rem;
-    }
+  li {
+    font-size: 0.9rem;
+  }
+}
+
+/* Modal overlay to cover the entire screen */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensures the modal is above the content */
+}
+
+/* Modal content box */
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 80%; /* You can adjust this value */
+  max-width: 500px; /* Max width for the modal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Close button styles */
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }

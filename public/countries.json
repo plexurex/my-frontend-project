@@ -3315,6 +3315,2386 @@
       "amenities_available": ["Parks", "Cafés", "Markets", "Public Transport"]
     }
   ]
+},
+{
+  "name": "Canada",
+  "cities": [
+    {
+      "name": "Toronto",
+      "population": 2731571,
+      "latitude": 43.651070,
+      "longitude": -79.347015,
+      "cost_of_living_index": 72.6,
+      "average_salary": 4200,
+      "average_rent": 1800,
+      "safety_index": 75.4,
+      "quality_of_life_index": 180.2,
+      "healthcare_index": 78.6,
+      "education_index": 89.3,
+      "job_availability_score": 83.2,
+      "public_transport_score": 85.7,
+      "weather": {
+        "average_temperature": 9.1,
+        "humidity": 70,
+        "extreme_weather_conditions": "Cold winters, snowstorms"
+      },
+      "amenities_available": ["Parks", "Museums", "Restaurants", "Public Transport"]
+    },
+    {
+      "name": "Vancouver",
+      "population": 631486,
+      "latitude": 49.282729,
+      "longitude": -123.120738,
+      "cost_of_living_index": 75.8,
+      "average_salary": 4100,
+      "average_rent": 1900,
+      "safety_index": 76.1,
+      "quality_of_life_index": 181.9,
+      "healthcare_index": 77.4,
+      "education_index": 88.5,
+      "job_availability_score": 82.5,
+      "public_transport_score": 86.8,
+      "weather": {
+        "average_temperature": 10.5,
+        "humidity": 75,
+        "extreme_weather_conditions": "Rainy winters, mild summers"
+      },
+      "amenities_available": ["Parks", "Beaches", "Art Galleries", "Public Transport"]
+    },
+    {
+      "name": "Montreal",
+      "population": 1704694,
+      "latitude": 45.501689,
+      "longitude": -73.567256,
+      "cost_of_living_index": 68.3,
+      "average_salary": 4000,
+      "average_rent": 1500,
+      "safety_index": 74.9,
+      "quality_of_life_index": 178.5,
+      "healthcare_index": 76.2,
+      "education_index": 87.1,
+      "job_availability_score": 81.6,
+      "public_transport_score": 84.3,
+      "weather": {
+        "average_temperature": 7.2,
+        "humidity": 68,
+        "extreme_weather_conditions": "Very cold winters, snow"
+      },
+      "amenities_available": ["Parks", "Cafés", "Cultural Centers", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "United States",
+  "cities": [
+    {
+      "name": "New York",
+      "population": 8419600,
+      "latitude": 40.712776,
+      "longitude": -74.005974,
+      "cost_of_living_index": 100.0,
+      "average_salary": 5000,
+      "average_rent": 2500,
+      "safety_index": 70.2,
+      "quality_of_life_index": 177.1,
+      "healthcare_index": 79.2,
+      "education_index": 90.5,
+      "job_availability_score": 85.3,
+      "public_transport_score": 91.0,
+      "weather": {
+        "average_temperature": 12.5,
+        "humidity": 66,
+        "extreme_weather_conditions": "Cold winters, hot summers"
+      },
+      "amenities_available": ["Parks", "Museums", "Broadway Shows", "Public Transport"]
+    },
+    {
+      "name": "Los Angeles",
+      "population": 3980400,
+      "latitude": 34.052235,
+      "longitude": -118.243683,
+      "cost_of_living_index": 86.3,
+      "average_salary": 4700,
+      "average_rent": 2200,
+      "safety_index": 69.0,
+      "quality_of_life_index": 175.6,
+      "healthcare_index": 78.1,
+      "education_index": 88.4,
+      "job_availability_score": 84.2,
+      "public_transport_score": 80.3,
+      "weather": {
+        "average_temperature": 18.7,
+        "humidity": 60,
+        "extreme_weather_conditions": "Hot summers, dry winters"
+      },
+      "amenities_available": ["Beaches", "Studios", "Malls", "Public Transport"]
+    },
+    {
+      "name": "Chicago",
+      "population": 2716000,
+      "latitude": 41.878113,
+      "longitude": -87.629799,
+      "cost_of_living_index": 74.5,
+      "average_salary": 4500,
+      "average_rent": 1800,
+      "safety_index": 71.8,
+      "quality_of_life_index": 173.2,
+      "healthcare_index": 77.3,
+      "education_index": 86.9,
+      "job_availability_score": 83.4,
+      "public_transport_score": 83.9,
+      "weather": {
+        "average_temperature": 10.0,
+        "humidity": 68,
+        "extreme_weather_conditions": "Cold, snowy winters"
+      },
+      "amenities_available": ["Parks", "Museums", "Skyscrapers", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Peru",
+  "cities": [
+    {
+      "name": "Lima",
+      "population": 9674755,
+      "latitude": -12.046374,
+      "longitude": -77.042793,
+      "cost_of_living_index": 45.3,
+      "average_salary": 1200,
+      "average_rent": 400,
+      "safety_index": 66.2,
+      "quality_of_life_index": 159.2,
+      "healthcare_index": 67.1,
+      "education_index": 76.1,
+      "job_availability_score": 70.6,
+      "public_transport_score": 75.2,
+      "weather": {
+        "average_temperature": 19.0,
+        "humidity": 80,
+        "extreme_weather_conditions": "Mild winters, humid summers"
+      },
+      "amenities_available": ["Parks", "Beaches", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Arequipa",
+      "population": 1008290,
+      "latitude": -16.409047,
+      "longitude": -71.537451,
+      "cost_of_living_index": 42.1,
+      "average_salary": 1100,
+      "average_rent": 380,
+      "safety_index": 67.0,
+      "quality_of_life_index": 158.0,
+      "healthcare_index": 66.3,
+      "education_index": 74.9,
+      "job_availability_score": 69.3,
+      "public_transport_score": 73.8,
+      "weather": {
+        "average_temperature": 18.2,
+        "humidity": 60,
+        "extreme_weather_conditions": "Warm days, cool nights"
+      },
+      "amenities_available": ["Parks", "Historic Sites", "Local Markets", "Public Transport"]
+    },
+    {
+      "name": "Trujillo",
+      "population": 919899,
+      "latitude": -8.112,
+      "longitude": -79.028,
+      "cost_of_living_index": 40.5,
+      "average_salary": 1000,
+      "average_rent": 350,
+      "safety_index": 65.1,
+      "quality_of_life_index": 157.1,
+      "healthcare_index": 65.2,
+      "education_index": 73.8,
+      "job_availability_score": 68.1,
+      "public_transport_score": 72.4,
+      "weather": {
+        "average_temperature": 20.1,
+        "humidity": 78,
+        "extreme_weather_conditions": "Warm, dry summers"
+      },
+      "amenities_available": ["Parks", "Museums", "Beaches", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "South Africa",
+  "cities": [
+    {
+      "name": "Johannesburg",
+      "population": 5787946,
+      "latitude": -26.2041,
+      "longitude": 28.0473,
+      "cost_of_living_index": 41.7,
+      "average_salary": 1500,
+      "average_rent": 500,
+      "safety_index": 60.5,
+      "quality_of_life_index": 158.6,
+      "healthcare_index": 67.0,
+      "education_index": 74.5,
+      "job_availability_score": 69.0,
+      "public_transport_score": 70.3,
+      "weather": {
+        "average_temperature": 17.3,
+        "humidity": 60,
+        "extreme_weather_conditions": "Warm summers, mild winters"
+      },
+      "amenities_available": ["Parks", "Markets", "Cultural Sites", "Public Transport"]
+    },
+    {
+      "name": "Cape Town",
+      "population": 433688,
+      "latitude": -33.9249,
+      "longitude": 18.4241,
+      "cost_of_living_index": 43.5,
+      "average_salary": 1600,
+      "average_rent": 550,
+      "safety_index": 62.1,
+      "quality_of_life_index": 160.2,
+      "healthcare_index": 68.4,
+      "education_index": 75.8,
+      "job_availability_score": 70.5,
+      "public_transport_score": 72.9,
+      "weather": {
+        "average_temperature": 16.5,
+        "humidity": 63,
+        "extreme_weather_conditions": "Hot summers, windy conditions"
+      },
+      "amenities_available": ["Beaches", "Parks", "Tourist Attractions", "Public Transport"]
+    },
+    {
+      "name": "Durban",
+      "population": 595061,
+      "latitude": -29.8587,
+      "longitude": 31.0218,
+      "cost_of_living_index": 39.8,
+      "average_salary": 1400,
+      "average_rent": 450,
+      "safety_index": 61.4,
+      "quality_of_life_index": 157.3,
+      "healthcare_index": 66.2,
+      "education_index": 73.2,
+      "job_availability_score": 68.2,
+      "public_transport_score": 69.6,
+      "weather": {
+        "average_temperature": 21.0,
+        "humidity": 73,
+        "extreme_weather_conditions": "Humid summers, rainy winters"
+      },
+      "amenities_available": ["Beaches", "Markets", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Egypt",
+  "cities": [
+    {
+      "name": "Cairo",
+      "population": 10230350,
+      "latitude": 30.0444,
+      "longitude": 31.2357,
+      "cost_of_living_index": 36.4,
+      "average_salary": 1200,
+      "average_rent": 400,
+      "safety_index": 64.8,
+      "quality_of_life_index": 155.9,
+      "healthcare_index": 65.0,
+      "education_index": 72.5,
+      "job_availability_score": 66.9,
+      "public_transport_score": 74.0,
+      "weather": {
+        "average_temperature": 22.0,
+        "humidity": 55,
+        "extreme_weather_conditions": "Hot, dry summers"
+      },
+      "amenities_available": ["Museums", "Markets", "Pyramids", "Public Transport"]
+    },
+    {
+      "name": "Alexandria",
+      "population": 5200000,
+      "latitude": 31.2001,
+      "longitude": 29.9187,
+      "cost_of_living_index": 35.1,
+      "average_salary": 1100,
+      "average_rent": 380,
+      "safety_index": 65.6,
+      "quality_of_life_index": 154.6,
+      "healthcare_index": 64.1,
+      "education_index": 71.3,
+      "job_availability_score": 65.7,
+      "public_transport_score": 72.3,
+      "weather": {
+        "average_temperature": 21.2,
+        "humidity": 60,
+        "extreme_weather_conditions": "Mild winters, dry summers"
+      },
+      "amenities_available": ["Beaches", "Libraries", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Giza",
+      "population": 8700000,
+      "latitude": 30.0131,
+      "longitude": 31.2089,
+      "cost_of_living_index": 34.5,
+      "average_salary": 1000,
+      "average_rent": 350,
+      "safety_index": 63.7,
+      "quality_of_life_index": 153.2,
+      "healthcare_index": 63.0,
+      "education_index": 70.1,
+      "job_availability_score": 64.4,
+      "public_transport_score": 71.0,
+      "weather": {
+        "average_temperature": 22.3,
+        "humidity": 56,
+        "extreme_weather_conditions": "Hot summers, dusty conditions"
+      },
+      "amenities_available": ["Pyramids", "Markets", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Nigeria",
+  "cities": [
+    {
+      "name": "Lagos",
+      "population": 14900000,
+      "latitude": 6.5244,
+      "longitude": 3.3792,
+      "cost_of_living_index": 30.4,
+      "average_salary": 900,
+      "average_rent": 300,
+      "safety_index": 60.1,
+      "quality_of_life_index": 150.3,
+      "healthcare_index": 62.0,
+      "education_index": 70.5,
+      "job_availability_score": 65.8,
+      "public_transport_score": 70.4,
+      "weather": {
+        "average_temperature": 27.5,
+        "humidity": 81,
+        "extreme_weather_conditions": "Hot, humid, heavy rains"
+      },
+      "amenities_available": ["Markets", "Beaches", "Malls", "Public Transport"]
+    },
+    {
+      "name": "Abuja",
+      "population": 1235880,
+      "latitude": 9.0579,
+      "longitude": 7.4951,
+      "cost_of_living_index": 32.1,
+      "average_salary": 950,
+      "average_rent": 320,
+      "safety_index": 61.0,
+      "quality_of_life_index": 151.8,
+      "healthcare_index": 63.3,
+      "education_index": 71.6,
+      "job_availability_score": 66.9,
+      "public_transport_score": 71.6,
+      "weather": {
+        "average_temperature": 26.8,
+        "humidity": 73,
+        "extreme_weather_conditions": "Hot, dry seasons and rainy season"
+      },
+      "amenities_available": ["Government Buildings", "Parks", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Kano",
+      "population": 3848880,
+      "latitude": 12.0022,
+      "longitude": 8.5919,
+      "cost_of_living_index": 28.7,
+      "average_salary": 850,
+      "average_rent": 280,
+      "safety_index": 59.4,
+      "quality_of_life_index": 148.9,
+      "healthcare_index": 60.7,
+      "education_index": 69.3,
+      "job_availability_score": 64.3,
+      "public_transport_score": 69.2,
+      "weather": {
+        "average_temperature": 29.0,
+        "humidity": 65,
+        "extreme_weather_conditions": "Hot year-round, dry harmattan winds"
+      },
+      "amenities_available": ["Markets", "Mosques", "Local Shops", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Kenya",
+  "cities": [
+    {
+      "name": "Nairobi",
+      "population": 4397073,
+      "latitude": -1.2921,
+      "longitude": 36.8219,
+      "cost_of_living_index": 35.6,
+      "average_salary": 1000,
+      "average_rent": 350,
+      "safety_index": 63.2,
+      "quality_of_life_index": 154.5,
+      "healthcare_index": 65.4,
+      "education_index": 72.7,
+      "job_availability_score": 68.2,
+      "public_transport_score": 73.9,
+      "weather": {
+        "average_temperature": 19.2,
+        "humidity": 77,
+        "extreme_weather_conditions": "Warm days, cool nights, rainy seasons"
+      },
+      "amenities_available": ["Parks", "Markets", "Museums", "Public Transport"]
+    },
+    {
+      "name": "Mombasa",
+      "population": 1208333,
+      "latitude": -4.0435,
+      "longitude": 39.6682,
+      "cost_of_living_index": 33.9,
+      "average_salary": 950,
+      "average_rent": 330,
+      "safety_index": 62.1,
+      "quality_of_life_index": 152.8,
+      "healthcare_index": 64.1,
+      "education_index": 71.4,
+      "job_availability_score": 66.8,
+      "public_transport_score": 72.5,
+      "weather": {
+        "average_temperature": 27.0,
+        "humidity": 85,
+        "extreme_weather_conditions": "Hot, humid, occasional flooding"
+      },
+      "amenities_available": ["Beaches", "Forts", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Kisumu",
+      "population": 610082,
+      "latitude": -0.0917,
+      "longitude": 34.767956,
+      "cost_of_living_index": 31.4,
+      "average_salary": 900,
+      "average_rent": 310,
+      "safety_index": 61.5,
+      "quality_of_life_index": 151.2,
+      "healthcare_index": 62.8,
+      "education_index": 70.1,
+      "job_availability_score": 65.4,
+      "public_transport_score": 71.1,
+      "weather": {
+        "average_temperature": 22.5,
+        "humidity": 80,
+        "extreme_weather_conditions": "Heavy rains, thunderstorms"
+      },
+      "amenities_available": ["Lakeside Walks", "Markets", "Cultural Sites", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Morocco",
+  "cities": [
+    {
+      "name": "Casablanca",
+      "population": 3359818,
+      "latitude": 33.5731,
+      "longitude": -7.5898,
+      "cost_of_living_index": 40.2,
+      "average_salary": 1200,
+      "average_rent": 400,
+      "safety_index": 66.7,
+      "quality_of_life_index": 156.3,
+      "healthcare_index": 67.1,
+      "education_index": 73.5,
+      "job_availability_score": 69.7,
+      "public_transport_score": 75.1,
+      "weather": {
+        "average_temperature": 19.4,
+        "humidity": 72,
+        "extreme_weather_conditions": "Mild winters, warm summers"
+      },
+      "amenities_available": ["Beaches", "Markets", "Historical Sites", "Public Transport"]
+    },
+    {
+      "name": "Rabat",
+      "population": 577827,
+      "latitude": 34.0209,
+      "longitude": -6.8416,
+      "cost_of_living_index": 39.0,
+      "average_salary": 1150,
+      "average_rent": 380,
+      "safety_index": 67.4,
+      "quality_of_life_index": 155.1,
+      "healthcare_index": 66.3,
+      "education_index": 72.4,
+      "job_availability_score": 68.5,
+      "public_transport_score": 74.0,
+      "weather": {
+        "average_temperature": 18.7,
+        "humidity": 70,
+        "extreme_weather_conditions": "Mild, windy weather"
+      },
+      "amenities_available": ["Museums", "Mosques", "Gardens", "Public Transport"]
+    },
+    {
+      "name": "Marrakech",
+      "population": 928850,
+      "latitude": 31.6295,
+      "longitude": -7.9811,
+      "cost_of_living_index": 38.3,
+      "average_salary": 1100,
+      "average_rent": 360,
+      "safety_index": 65.5,
+      "quality_of_life_index": 153.9,
+      "healthcare_index": 65.0,
+      "education_index": 71.0,
+      "job_availability_score": 67.3,
+      "public_transport_score": 72.8,
+      "weather": {
+        "average_temperature": 22.0,
+        "humidity": 68,
+        "extreme_weather_conditions": "Hot summers, mild winters"
+      },
+      "amenities_available": ["Souks", "Palaces", "Gardens", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Turkey",
+  "cities": [
+    {
+      "name": "Istanbul",
+      "population": 15462452,
+      "latitude": 41.0082,
+      "longitude": 28.9784,
+      "cost_of_living_index": 43.9,
+      "average_salary": 1500,
+      "average_rent": 500,
+      "safety_index": 68.8,
+      "quality_of_life_index": 158.1,
+      "healthcare_index": 70.8,
+      "education_index": 75.7,
+      "job_availability_score": 71.9,
+      "public_transport_score": 82.4,
+      "weather": {
+        "average_temperature": 14.6,
+        "humidity": 73,
+        "extreme_weather_conditions": "Humid winters, hot summers"
+      },
+      "amenities_available": ["Mosques", "Markets", "Museums", "Public Transport"]
+    },
+    {
+      "name": "Ankara",
+      "population": 5445026,
+      "latitude": 39.9334,
+      "longitude": 32.8597,
+      "cost_of_living_index": 41.7,
+      "average_salary": 1400,
+      "average_rent": 450,
+      "safety_index": 69.4,
+      "quality_of_life_index": 157.0,
+      "healthcare_index": 69.5,
+      "education_index": 74.6,
+      "job_availability_score": 70.4,
+      "public_transport_score": 80.9,
+      "weather": {
+        "average_temperature": 12.0,
+        "humidity": 65,
+        "extreme_weather_conditions": "Cold winters, hot summers"
+      },
+      "amenities_available": ["Museums", "Parks", "Cultural Centers", "Public Transport"]
+    },
+    {
+      "name": "Izmir",
+      "population": 4320519,
+      "latitude": 38.4192,
+      "longitude": 27.1287,
+      "cost_of_living_index": 40.2,
+      "average_salary": 1350,
+      "average_rent": 420,
+      "safety_index": 70.1,
+      "quality_of_life_index": 156.2,
+      "healthcare_index": 68.4,
+      "education_index": 73.2,
+      "job_availability_score": 69.0,
+      "public_transport_score": 79.6,
+      "weather": {
+        "average_temperature": 17.5,
+        "humidity": 67,
+        "extreme_weather_conditions": "Warm, dry summers"
+      },
+      "amenities_available": ["Seaside", "Markets", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Russia",
+  "cities": [
+    {
+      "name": "Moscow",
+      "population": 12506468,
+      "latitude": 55.7558,
+      "longitude": 37.6173,
+      "cost_of_living_index": 47.5,
+      "average_salary": 1700,
+      "average_rent": 600,
+      "safety_index": 69.3,
+      "quality_of_life_index": 160.5,
+      "healthcare_index": 71.5,
+      "education_index": 78.4,
+      "job_availability_score": 72.7,
+      "public_transport_score": 85.3,
+      "weather": {
+        "average_temperature": 5.8,
+        "humidity": 77,
+        "extreme_weather_conditions": "Cold, snowy winters"
+      },
+      "amenities_available": ["Theaters", "Metro", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Saint Petersburg",
+      "population": 5383890,
+      "latitude": 59.9311,
+      "longitude": 30.3609,
+      "cost_of_living_index": 45.8,
+      "average_salary": 1600,
+      "average_rent": 550,
+      "safety_index": 68.7,
+      "quality_of_life_index": 159.0,
+      "healthcare_index": 70.1,
+      "education_index": 77.0,
+      "job_availability_score": 71.4,
+      "public_transport_score": 83.8,
+      "weather": {
+        "average_temperature": 6.5,
+        "humidity": 78,
+        "extreme_weather_conditions": "Cloudy, long winters"
+      },
+      "amenities_available": ["Canals", "Museums", "Palaces", "Public Transport"]
+    },
+    {
+      "name": "Novosibirsk",
+      "population": 1625631,
+      "latitude": 55.0084,
+      "longitude": 82.9357,
+      "cost_of_living_index": 43.3,
+      "average_salary": 1500,
+      "average_rent": 500,
+      "safety_index": 67.1,
+      "quality_of_life_index": 157.6,
+      "healthcare_index": 68.8,
+      "education_index": 75.6,
+      "job_availability_score": 70.1,
+      "public_transport_score": 80.2,
+      "weather": {
+        "average_temperature": 1.0,
+        "humidity": 76,
+        "extreme_weather_conditions": "Very cold winters"
+      },
+      "amenities_available": ["Parks", "Libraries", "Theaters", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Ukraine",
+  "cities": [
+    {
+      "name": "Kyiv",
+      "population": 2967360,
+      "latitude": 50.4501,
+      "longitude": 30.5234,
+      "cost_of_living_index": 34.2,
+      "average_salary": 1200,
+      "average_rent": 400,
+      "safety_index": 67.5,
+      "quality_of_life_index": 157.3,
+      "healthcare_index": 66.2,
+      "education_index": 75.8,
+      "job_availability_score": 70.1,
+      "public_transport_score": 78.6,
+      "weather": {
+        "average_temperature": 8.5,
+        "humidity": 73,
+        "extreme_weather_conditions": "Cold winters, warm summers"
+      },
+      "amenities_available": ["Parks", "Museums", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Kharkiv",
+      "population": 1443200,
+      "latitude": 49.9935,
+      "longitude": 36.2304,
+      "cost_of_living_index": 32.7,
+      "average_salary": 1100,
+      "average_rent": 380,
+      "safety_index": 66.0,
+      "quality_of_life_index": 155.9,
+      "healthcare_index": 65.1,
+      "education_index": 74.2,
+      "job_availability_score": 68.6,
+      "public_transport_score": 76.9,
+      "weather": {
+        "average_temperature": 7.9,
+        "humidity": 74,
+        "extreme_weather_conditions": "Cold winters, mild summers"
+      },
+      "amenities_available": ["Parks", "Libraries", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Odesa",
+      "population": 1010940,
+      "latitude": 46.4825,
+      "longitude": 30.7233,
+      "cost_of_living_index": 33.5,
+      "average_salary": 1150,
+      "average_rent": 390,
+      "safety_index": 65.3,
+      "quality_of_life_index": 156.4,
+      "healthcare_index": 65.6,
+      "education_index": 74.9,
+      "job_availability_score": 69.3,
+      "public_transport_score": 77.5,
+      "weather": {
+        "average_temperature": 10.2,
+        "humidity": 70,
+        "extreme_weather_conditions": "Mild winters, breezy summers"
+      },
+      "amenities_available": ["Beaches", "Parks", "Theaters", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Poland",
+  "cities": [
+    {
+      "name": "Warsaw",
+      "population": 1793579,
+      "latitude": 52.2297,
+      "longitude": 21.0122,
+      "cost_of_living_index": 45.8,
+      "average_salary": 1900,
+      "average_rent": 700,
+      "safety_index": 72.3,
+      "quality_of_life_index": 164.7,
+      "healthcare_index": 70.4,
+      "education_index": 79.1,
+      "job_availability_score": 73.9,
+      "public_transport_score": 84.1,
+      "weather": {
+        "average_temperature": 8.9,
+        "humidity": 69,
+        "extreme_weather_conditions": "Cold winters, mild summers"
+      },
+      "amenities_available": ["Parks", "Museums", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Kraków",
+      "population": 779115,
+      "latitude": 50.0647,
+      "longitude": 19.9450,
+      "cost_of_living_index": 43.7,
+      "average_salary": 1800,
+      "average_rent": 650,
+      "safety_index": 73.1,
+      "quality_of_life_index": 163.5,
+      "healthcare_index": 69.3,
+      "education_index": 78.0,
+      "job_availability_score": 72.5,
+      "public_transport_score": 82.7,
+      "weather": {
+        "average_temperature": 9.3,
+        "humidity": 67,
+        "extreme_weather_conditions": "Cold winters, rainy springs"
+      },
+      "amenities_available": ["Parks", "Castles", "Old Town", "Public Transport"]
+    },
+    {
+      "name": "Wrocław",
+      "population": 643782,
+      "latitude": 51.1079,
+      "longitude": 17.0385,
+      "cost_of_living_index": 42.9,
+      "average_salary": 1750,
+      "average_rent": 600,
+      "safety_index": 72.0,
+      "quality_of_life_index": 162.4,
+      "healthcare_index": 68.5,
+      "education_index": 77.3,
+      "job_availability_score": 71.4,
+      "public_transport_score": 81.5,
+      "weather": {
+        "average_temperature": 9.7,
+        "humidity": 68,
+        "extreme_weather_conditions": "Cold winters, mild summers"
+      },
+      "amenities_available": ["Parks", "Riverside Walks", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Czech Republic",
+  "cities": [
+    {
+      "name": "Prague",
+      "population": 1309000,
+      "latitude": 50.0755,
+      "longitude": 14.4378,
+      "cost_of_living_index": 50.3,
+      "average_salary": 2000,
+      "average_rent": 800,
+      "safety_index": 74.6,
+      "quality_of_life_index": 167.8,
+      "healthcare_index": 72.5,
+      "education_index": 80.4,
+      "job_availability_score": 74.8,
+      "public_transport_score": 85.0,
+      "weather": {
+        "average_temperature": 9.1,
+        "humidity": 68,
+        "extreme_weather_conditions": "Cold winters, foggy mornings"
+      },
+      "amenities_available": ["Castles", "Old Town", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Brno",
+      "population": 382405,
+      "latitude": 49.1951,
+      "longitude": 16.6068,
+      "cost_of_living_index": 47.2,
+      "average_salary": 1900,
+      "average_rent": 700,
+      "safety_index": 73.0,
+      "quality_of_life_index": 165.9,
+      "healthcare_index": 71.4,
+      "education_index": 79.3,
+      "job_availability_score": 73.2,
+      "public_transport_score": 83.4,
+      "weather": {
+        "average_temperature": 9.5,
+        "humidity": 67,
+        "extreme_weather_conditions": "Cold winters, mild springs"
+      },
+      "amenities_available": ["Parks", "Museums", "Universities", "Public Transport"]
+    },
+    {
+      "name": "Ostrava",
+      "population": 287968,
+      "latitude": 49.8209,
+      "longitude": 18.2625,
+      "cost_of_living_index": 45.5,
+      "average_salary": 1800,
+      "average_rent": 650,
+      "safety_index": 71.9,
+      "quality_of_life_index": 164.3,
+      "healthcare_index": 70.3,
+      "education_index": 78.0,
+      "job_availability_score": 71.9,
+      "public_transport_score": 81.9,
+      "weather": {
+        "average_temperature": 8.8,
+        "humidity": 69,
+        "extreme_weather_conditions": "Cold winters, occasional snowstorms"
+      },
+      "amenities_available": ["Parks", "Industrial Museums", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Slovenia",
+  "cities": [
+    {
+      "name": "Ljubljana",
+      "population": 295504,
+      "latitude": 46.0569,
+      "longitude": 14.5058,
+      "cost_of_living_index": 55.3,
+      "average_salary": 2100,
+      "average_rent": 850,
+      "safety_index": 76.0,
+      "quality_of_life_index": 169.6,
+      "healthcare_index": 74.0,
+      "education_index": 81.2,
+      "job_availability_score": 75.2,
+      "public_transport_score": 82.3,
+      "weather": {
+        "average_temperature": 10.5,
+        "humidity": 71,
+        "extreme_weather_conditions": "Cool winters, rainy seasons"
+      },
+      "amenities_available": ["Riverside Cafés", "Castles", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Maribor",
+      "population": 112325,
+      "latitude": 46.5547,
+      "longitude": 15.6459,
+      "cost_of_living_index": 52.8,
+      "average_salary": 2000,
+      "average_rent": 800,
+      "safety_index": 75.1,
+      "quality_of_life_index": 168.0,
+      "healthcare_index": 72.9,
+      "education_index": 79.8,
+      "job_availability_score": 74.0,
+      "public_transport_score": 80.9,
+      "weather": {
+        "average_temperature": 10.0,
+        "humidity": 72,
+        "extreme_weather_conditions": "Cold winters, occasional fog"
+      },
+      "amenities_available": ["Parks", "Wineries", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Celje",
+      "population": 37510,
+      "latitude": 46.2309,
+      "longitude": 15.2604,
+      "cost_of_living_index": 50.9,
+      "average_salary": 1950,
+      "average_rent": 780,
+      "safety_index": 74.3,
+      "quality_of_life_index": 166.5,
+      "healthcare_index": 71.8,
+      "education_index": 78.4,
+      "job_availability_score": 72.8,
+      "public_transport_score": 79.5,
+      "weather": {
+        "average_temperature": 9.8,
+        "humidity": 70,
+        "extreme_weather_conditions": "Cold winters, stormy spring"
+      },
+      "amenities_available": ["Parks", "Castles", "Historic Sites", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Serbia",
+  "cities": [
+    {
+      "name": "Belgrade",
+      "population": 1166763,
+      "latitude": 44.7866,
+      "longitude": 20.4489,
+      "cost_of_living_index": 41.4,
+      "average_salary": 1300,
+      "average_rent": 500,
+      "safety_index": 70.5,
+      "quality_of_life_index": 160.1,
+      "healthcare_index": 69.0,
+      "education_index": 76.7,
+      "job_availability_score": 70.9,
+      "public_transport_score": 80.1,
+      "weather": {
+        "average_temperature": 11.5,
+        "humidity": 68,
+        "extreme_weather_conditions": "Cold winters, warm summers"
+      },
+      "amenities_available": ["Riverside", "Parks", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Novi Sad",
+      "population": 341625,
+      "latitude": 45.2671,
+      "longitude": 19.8335,
+      "cost_of_living_index": 40.1,
+      "average_salary": 1250,
+      "average_rent": 470,
+      "safety_index": 71.2,
+      "quality_of_life_index": 158.7,
+      "healthcare_index": 67.9,
+      "education_index": 75.3,
+      "job_availability_score": 69.4,
+      "public_transport_score": 78.7,
+      "weather": {
+        "average_temperature": 11.2,
+        "humidity": 67,
+        "extreme_weather_conditions": "Cold winters, breezy summers"
+      },
+      "amenities_available": ["Parks", "Festivals", "Universities", "Public Transport"]
+    },
+    {
+      "name": "Niš",
+      "population": 183164,
+      "latitude": 43.3209,
+      "longitude": 21.8958,
+      "cost_of_living_index": 39.0,
+      "average_salary": 1200,
+      "average_rent": 450,
+      "safety_index": 70.0,
+      "quality_of_life_index": 157.3,
+      "healthcare_index": 66.5,
+      "education_index": 74.1,
+      "job_availability_score": 68.2,
+      "public_transport_score": 77.3,
+      "weather": {
+        "average_temperature": 10.7,
+        "humidity": 69,
+        "extreme_weather_conditions": "Snowy winters, sunny summers"
+      },
+      "amenities_available": ["Fortresses", "Cafés", "Local Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Macedonia",
+  "cities": [
+    {
+      "name": "Skopje",
+      "population": 544086,
+      "latitude": 41.9981,
+      "longitude": 21.4254,
+      "cost_of_living_index": 38.5,
+      "average_salary": 1100,
+      "average_rent": 400,
+      "safety_index": 72.1,
+      "quality_of_life_index": 158.6,
+      "healthcare_index": 67.2,
+      "education_index": 75.4,
+      "job_availability_score": 69.2,
+      "public_transport_score": 76.4,
+      "weather": {
+        "average_temperature": 11.7,
+        "humidity": 65,
+        "extreme_weather_conditions": "Cold winters, dry summers"
+      },
+      "amenities_available": ["Parks", "Fortresses", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Bitola",
+      "population": 74410,
+      "latitude": 41.0307,
+      "longitude": 21.3300,
+      "cost_of_living_index": 36.9,
+      "average_salary": 1000,
+      "average_rent": 380,
+      "safety_index": 71.0,
+      "quality_of_life_index": 157.0,
+      "healthcare_index": 66.0,
+      "education_index": 74.1,
+      "job_availability_score": 67.8,
+      "public_transport_score": 74.9,
+      "weather": {
+        "average_temperature": 11.1,
+        "humidity": 66,
+        "extreme_weather_conditions": "Cool winters, windy seasons"
+      },
+      "amenities_available": ["Markets", "Theaters", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Tetovo",
+      "population": 52515,
+      "latitude": 42.0084,
+      "longitude": 20.9712,
+      "cost_of_living_index": 36.2,
+      "average_salary": 950,
+      "average_rent": 360,
+      "safety_index": 70.2,
+      "quality_of_life_index": 155.4,
+      "healthcare_index": 65.1,
+      "education_index": 72.9,
+      "job_availability_score": 66.3,
+      "public_transport_score": 73.5,
+      "weather": {
+        "average_temperature": 11.4,
+        "humidity": 64,
+        "extreme_weather_conditions": "Mild winters, warm summers"
+      },
+      "amenities_available": ["Mosques", "Markets", "Universities", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Georgia",
+  "cities": [
+    {
+      "name": "Tbilisi",
+      "population": 1150000,
+      "latitude": 41.7151,
+      "longitude": 44.8271,
+      "cost_of_living_index": 37.8,
+      "average_salary": 1050,
+      "average_rent": 390,
+      "safety_index": 74.2,
+      "quality_of_life_index": 159.1,
+      "healthcare_index": 67.8,
+      "education_index": 76.2,
+      "job_availability_score": 69.7,
+      "public_transport_score": 77.3,
+      "weather": {
+        "average_temperature": 13.3,
+        "humidity": 66,
+        "extreme_weather_conditions": "Hot summers, snowy winters"
+      },
+      "amenities_available": ["Parks", "Old Town", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Batumi",
+      "population": 169100,
+      "latitude": 41.6168,
+      "longitude": 41.6367,
+      "cost_of_living_index": 35.9,
+      "average_salary": 1000,
+      "average_rent": 370,
+      "safety_index": 73.0,
+      "quality_of_life_index": 157.5,
+      "healthcare_index": 66.7,
+      "education_index": 74.9,
+      "job_availability_score": 68.1,
+      "public_transport_score": 75.6,
+      "weather": {
+        "average_temperature": 14.7,
+        "humidity": 78,
+        "extreme_weather_conditions": "Wet and stormy seasons"
+      },
+      "amenities_available": ["Beaches", "Parks", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Kutaisi",
+      "population": 147900,
+      "latitude": 42.2676,
+      "longitude": 42.7180,
+      "cost_of_living_index": 35.3,
+      "average_salary": 980,
+      "average_rent": 350,
+      "safety_index": 72.1,
+      "quality_of_life_index": 156.2,
+      "healthcare_index": 65.4,
+      "education_index": 73.6,
+      "job_availability_score": 66.7,
+      "public_transport_score": 74.0,
+      "weather": {
+        "average_temperature": 13.9,
+        "humidity": 75,
+        "extreme_weather_conditions": "Humid summers, rainy springs"
+      },
+      "amenities_available": ["Historical Sites", "Cafés", "Parks", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Armenia",
+  "cities": [
+    {
+      "name": "Yerevan",
+      "population": 1075800,
+      "latitude": 40.1792,
+      "longitude": 44.4991,
+      "cost_of_living_index": 36.7,
+      "average_salary": 1000,
+      "average_rent": 380,
+      "safety_index": 73.5,
+      "quality_of_life_index": 158.4,
+      "healthcare_index": 67.5,
+      "education_index": 75.1,
+      "job_availability_score": 68.6,
+      "public_transport_score": 75.9,
+      "weather": {
+        "average_temperature": 12.7,
+        "humidity": 65,
+        "extreme_weather_conditions": "Dry summers, snowy winters"
+      },
+      "amenities_available": ["Museums", "Markets", "Churches", "Public Transport"]
+    },
+    {
+      "name": "Gyumri",
+      "population": 114500,
+      "latitude": 40.7894,
+      "longitude": 43.8476,
+      "cost_of_living_index": 34.9,
+      "average_salary": 950,
+      "average_rent": 350,
+      "safety_index": 72.3,
+      "quality_of_life_index": 156.8,
+      "healthcare_index": 66.2,
+      "education_index": 73.8,
+      "job_availability_score": 67.1,
+      "public_transport_score": 74.5,
+      "weather": {
+        "average_temperature": 10.8,
+        "humidity": 68,
+        "extreme_weather_conditions": "Cold winters, mild summers"
+      },
+      "amenities_available": ["Parks", "Churches", "Cultural Centers", "Public Transport"]
+    },
+    {
+      "name": "Vanadzor",
+      "population": 79400,
+      "latitude": 40.8122,
+      "longitude": 44.4886,
+      "cost_of_living_index": 34.1,
+      "average_salary": 920,
+      "average_rent": 340,
+      "safety_index": 71.2,
+      "quality_of_life_index": 155.3,
+      "healthcare_index": 65.1,
+      "education_index": 72.5,
+      "job_availability_score": 65.6,
+      "public_transport_score": 73.2,
+      "weather": {
+        "average_temperature": 11.0,
+        "humidity": 67,
+        "extreme_weather_conditions": "Cool summers, long winters"
+      },
+      "amenities_available": ["Parks", "Lakes", "Local Shops", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Uzbekistan",
+  "cities": [
+    {
+      "name": "Tashkent",
+      "population": 2515000,
+      "latitude": 41.2995,
+      "longitude": 69.2401,
+      "cost_of_living_index": 31.6,
+      "average_salary": 880,
+      "average_rent": 320,
+      "safety_index": 72.7,
+      "quality_of_life_index": 154.7,
+      "healthcare_index": 64.4,
+      "education_index": 71.2,
+      "job_availability_score": 67.5,
+      "public_transport_score": 74.8,
+      "weather": {
+        "average_temperature": 14.5,
+        "humidity": 58,
+        "extreme_weather_conditions": "Hot summers, cold winters"
+      },
+      "amenities_available": ["Mosques", "Markets", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Samarkand",
+      "population": 551700,
+      "latitude": 39.6542,
+      "longitude": 66.9597,
+      "cost_of_living_index": 30.9,
+      "average_salary": 850,
+      "average_rent": 300,
+      "safety_index": 71.3,
+      "quality_of_life_index": 153.5,
+      "healthcare_index": 63.2,
+      "education_index": 70.1,
+      "job_availability_score": 66.2,
+      "public_transport_score": 73.1,
+      "weather": {
+        "average_temperature": 15.0,
+        "humidity": 60,
+        "extreme_weather_conditions": "Hot, dry summers"
+      },
+      "amenities_available": ["Historical Sites", "Markets", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Bukhara",
+      "population": 280187,
+      "latitude": 39.7745,
+      "longitude": 64.4281,
+      "cost_of_living_index": 30.2,
+      "average_salary": 820,
+      "average_rent": 290,
+      "safety_index": 70.1,
+      "quality_of_life_index": 152.4,
+      "healthcare_index": 62.0,
+      "education_index": 68.7,
+      "job_availability_score": 64.9,
+      "public_transport_score": 71.9,
+      "weather": {
+        "average_temperature": 16.3,
+        "humidity": 55,
+        "extreme_weather_conditions": "Arid, dusty summers"
+      },
+      "amenities_available": ["Mosques", "Madrasas", "Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Kazakhstan",
+  "cities": [
+    {
+      "name": "Almaty",
+      "population": 1979700,
+      "latitude": 43.2389,
+      "longitude": 76.8897,
+      "cost_of_living_index": 34.5,
+      "average_salary": 1000,
+      "average_rent": 400,
+      "safety_index": 71.5,
+      "quality_of_life_index": 156.0,
+      "healthcare_index": 66.6,
+      "education_index": 73.3,
+      "job_availability_score": 68.3,
+      "public_transport_score": 75.3,
+      "weather": {
+        "average_temperature": 10.6,
+        "humidity": 63,
+        "extreme_weather_conditions": "Cold winters, warm summers"
+      },
+      "amenities_available": ["Mountains", "Parks", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Astana",
+      "population": 1300000,
+      "latitude": 51.1605,
+      "longitude": 71.4704,
+      "cost_of_living_index": 33.2,
+      "average_salary": 980,
+      "average_rent": 390,
+      "safety_index": 70.3,
+      "quality_of_life_index": 154.9,
+      "healthcare_index": 65.2,
+      "education_index": 72.0,
+      "job_availability_score": 67.0,
+      "public_transport_score": 74.2,
+      "weather": {
+        "average_temperature": 3.5,
+        "humidity": 61,
+        "extreme_weather_conditions": "Very cold winters"
+      },
+      "amenities_available": ["Government Buildings", "Museums", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Shymkent",
+      "population": 1037100,
+      "latitude": 42.3417,
+      "longitude": 69.5901,
+      "cost_of_living_index": 32.1,
+      "average_salary": 940,
+      "average_rent": 370,
+      "safety_index": 69.1,
+      "quality_of_life_index": 153.7,
+      "healthcare_index": 63.9,
+      "education_index": 70.8,
+      "job_availability_score": 65.5,
+      "public_transport_score": 73.0,
+      "weather": {
+        "average_temperature": 14.3,
+        "humidity": 62,
+        "extreme_weather_conditions": "Hot summers, dry winds"
+      },
+      "amenities_available": ["Parks", "Bazaars", "Mosques", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Azerbaijan",
+  "cities": [
+    {
+      "name": "Baku",
+      "population": 2300000,
+      "latitude": 40.4093,
+      "longitude": 49.8671,
+      "cost_of_living_index": 35.6,
+      "average_salary": 950,
+      "average_rent": 380,
+      "safety_index": 72.9,
+      "quality_of_life_index": 157.2,
+      "healthcare_index": 66.3,
+      "education_index": 74.0,
+      "job_availability_score": 68.1,
+      "public_transport_score": 76.5,
+      "weather": {
+        "average_temperature": 15.2,
+        "humidity": 67,
+        "extreme_weather_conditions": "Windy winters, hot summers"
+      },
+      "amenities_available": ["Seaside Boulevard", "Markets", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Ganja",
+      "population": 330000,
+      "latitude": 40.6828,
+      "longitude": 46.3606,
+      "cost_of_living_index": 33.7,
+      "average_salary": 880,
+      "average_rent": 350,
+      "safety_index": 71.4,
+      "quality_of_life_index": 155.7,
+      "healthcare_index": 65.1,
+      "education_index": 72.5,
+      "job_availability_score": 66.7,
+      "public_transport_score": 74.9,
+      "weather": {
+        "average_temperature": 14.3,
+        "humidity": 64,
+        "extreme_weather_conditions": "Warm summers, mild winters"
+      },
+      "amenities_available": ["Parks", "Mosques", "Bazaars", "Public Transport"]
+    },
+    {
+      "name": "Sumqayit",
+      "population": 345000,
+      "latitude": 40.5897,
+      "longitude": 49.6686,
+      "cost_of_living_index": 34.2,
+      "average_salary": 890,
+      "average_rent": 360,
+      "safety_index": 70.5,
+      "quality_of_life_index": 156.1,
+      "healthcare_index": 65.7,
+      "education_index": 73.0,
+      "job_availability_score": 67.3,
+      "public_transport_score": 75.4,
+      "weather": {
+        "average_temperature": 15.5,
+        "humidity": 66,
+        "extreme_weather_conditions": "Windy, dry summers"
+      },
+      "amenities_available": ["Parks", "Seaside Views", "Cafés", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Sri Lanka",
+  "cities": [
+    {
+      "name": "Colombo",
+      "population": 752993,
+      "latitude": 6.9271,
+      "longitude": 79.8612,
+      "cost_of_living_index": 39.5,
+      "average_salary": 950,
+      "average_rent": 350,
+      "safety_index": 71.3,
+      "quality_of_life_index": 158.3,
+      "healthcare_index": 68.2,
+      "education_index": 74.6,
+      "job_availability_score": 68.5,
+      "public_transport_score": 76.1,
+      "weather": {
+        "average_temperature": 27.3,
+        "humidity": 79,
+        "extreme_weather_conditions": "Humid and rainy monsoons"
+      },
+      "amenities_available": ["Beaches", "Temples", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Kandy",
+      "population": 125400,
+      "latitude": 7.2906,
+      "longitude": 80.6337,
+      "cost_of_living_index": 37.9,
+      "average_salary": 900,
+      "average_rent": 330,
+      "safety_index": 70.6,
+      "quality_of_life_index": 157.0,
+      "healthcare_index": 66.9,
+      "education_index": 73.1,
+      "job_availability_score": 67.4,
+      "public_transport_score": 74.5,
+      "weather": {
+        "average_temperature": 25.5,
+        "humidity": 77,
+        "extreme_weather_conditions": "Wet seasons, mild summers"
+      },
+      "amenities_available": ["Lakes", "Buddhist Temples", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Galle",
+      "population": 93618,
+      "latitude": 6.0535,
+      "longitude": 80.2210,
+      "cost_of_living_index": 36.5,
+      "average_salary": 880,
+      "average_rent": 310,
+      "safety_index": 69.8,
+      "quality_of_life_index": 155.9,
+      "healthcare_index": 65.3,
+      "education_index": 72.0,
+      "job_availability_score": 66.1,
+      "public_transport_score": 73.6,
+      "weather": {
+        "average_temperature": 27.7,
+        "humidity": 82,
+        "extreme_weather_conditions": "Heavy rainfall, high humidity"
+      },
+      "amenities_available": ["Beaches", "Forts", "Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Nepal",
+  "cities": [
+    {
+      "name": "Kathmandu",
+      "population": 1003285,
+      "latitude": 27.7172,
+      "longitude": 85.3240,
+      "cost_of_living_index": 31.8,
+      "average_salary": 750,
+      "average_rent": 250,
+      "safety_index": 73.0,
+      "quality_of_life_index": 154.6,
+      "healthcare_index": 63.4,
+      "education_index": 70.5,
+      "job_availability_score": 64.9,
+      "public_transport_score": 72.3,
+      "weather": {
+        "average_temperature": 18.4,
+        "humidity": 72,
+        "extreme_weather_conditions": "Mild winters, rainy summers"
+      },
+      "amenities_available": ["Temples", "Mountains", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Pokhara",
+      "population": 518452,
+      "latitude": 28.2096,
+      "longitude": 83.9856,
+      "cost_of_living_index": 30.2,
+      "average_salary": 720,
+      "average_rent": 240,
+      "safety_index": 72.0,
+      "quality_of_life_index": 153.4,
+      "healthcare_index": 62.0,
+      "education_index": 69.3,
+      "job_availability_score": 63.8,
+      "public_transport_score": 70.8,
+      "weather": {
+        "average_temperature": 19.5,
+        "humidity": 73,
+        "extreme_weather_conditions": "Monsoon seasons, foggy mornings"
+      },
+      "amenities_available": ["Lakes", "Mountains", "Hiking Trails", "Public Transport"]
+    },
+    {
+      "name": "Lalitpur",
+      "population": 284922,
+      "latitude": 27.6644,
+      "longitude": 85.3188,
+      "cost_of_living_index": 30.9,
+      "average_salary": 740,
+      "average_rent": 245,
+      "safety_index": 71.4,
+      "quality_of_life_index": 153.9,
+      "healthcare_index": 62.6,
+      "education_index": 70.0,
+      "job_availability_score": 64.5,
+      "public_transport_score": 71.5,
+      "weather": {
+        "average_temperature": 18.7,
+        "humidity": 74,
+        "extreme_weather_conditions": "Mild summers, wet monsoons"
+      },
+      "amenities_available": ["Temples", "Cafés", "Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Bangladesh",
+  "cities": [
+    {
+      "name": "Dhaka",
+      "population": 8906000,
+      "latitude": 23.8103,
+      "longitude": 90.4125,
+      "cost_of_living_index": 28.7,
+      "average_salary": 650,
+      "average_rent": 200,
+      "safety_index": 65.2,
+      "quality_of_life_index": 150.3,
+      "healthcare_index": 60.1,
+      "education_index": 68.0,
+      "job_availability_score": 63.5,
+      "public_transport_score": 70.2,
+      "weather": {
+        "average_temperature": 26.9,
+        "humidity": 80,
+        "extreme_weather_conditions": "Flood-prone monsoons"
+      },
+      "amenities_available": ["Markets", "Mosques", "Bazaars", "Public Transport"]
+    },
+    {
+      "name": "Chittagong",
+      "population": 3921000,
+      "latitude": 22.3569,
+      "longitude": 91.7832,
+      "cost_of_living_index": 27.5,
+      "average_salary": 620,
+      "average_rent": 190,
+      "safety_index": 64.3,
+      "quality_of_life_index": 149.0,
+      "healthcare_index": 59.0,
+      "education_index": 66.8,
+      "job_availability_score": 62.1,
+      "public_transport_score": 69.0,
+      "weather": {
+        "average_temperature": 27.5,
+        "humidity": 81,
+        "extreme_weather_conditions": "Heavy rainfall, cyclones"
+      },
+      "amenities_available": ["Beaches", "Markets", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Khulna",
+      "population": 663000,
+      "latitude": 22.8456,
+      "longitude": 89.5403,
+      "cost_of_living_index": 26.9,
+      "average_salary": 600,
+      "average_rent": 180,
+      "safety_index": 63.0,
+      "quality_of_life_index": 147.6,
+      "healthcare_index": 58.2,
+      "education_index": 65.7,
+      "job_availability_score": 60.8,
+      "public_transport_score": 67.7,
+      "weather": {
+        "average_temperature": 27.0,
+        "humidity": 82,
+        "extreme_weather_conditions": "Monsoons and floods"
+      },
+      "amenities_available": ["Markets", "Riverside", "Mosques", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Philippines",
+  "cities": [
+    {
+      "name": "Manila",
+      "population": 1780148,
+      "latitude": 14.5995,
+      "longitude": 120.9842,
+      "cost_of_living_index": 41.5,
+      "average_salary": 1000,
+      "average_rent": 400,
+      "safety_index": 67.2,
+      "quality_of_life_index": 156.6,
+      "healthcare_index": 68.5,
+      "education_index": 73.6,
+      "job_availability_score": 69.8,
+      "public_transport_score": 77.3,
+      "weather": {
+        "average_temperature": 27.6,
+        "humidity": 83,
+        "extreme_weather_conditions": "Typhoons, flooding"
+      },
+      "amenities_available": ["Markets", "Malls", "Historic Sites", "Public Transport"]
+    },
+    {
+      "name": "Cebu City",
+      "population": 964169,
+      "latitude": 10.3157,
+      "longitude": 123.8854,
+      "cost_of_living_index": 40.2,
+      "average_salary": 950,
+      "average_rent": 380,
+      "safety_index": 66.0,
+      "quality_of_life_index": 155.0,
+      "healthcare_index": 67.3,
+      "education_index": 72.1,
+      "job_availability_score": 68.4,
+      "public_transport_score": 75.8,
+      "weather": {
+        "average_temperature": 28.1,
+        "humidity": 84,
+        "extreme_weather_conditions": "Rainy seasons, heatwaves"
+      },
+      "amenities_available": ["Beaches", "Markets", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Davao City",
+      "population": 1632991,
+      "latitude": 7.1907,
+      "longitude": 125.4553,
+      "cost_of_living_index": 39.4,
+      "average_salary": 930,
+      "average_rent": 370,
+      "safety_index": 68.4,
+      "quality_of_life_index": 154.1,
+      "healthcare_index": 66.0,
+      "education_index": 71.0,
+      "job_availability_score": 67.2,
+      "public_transport_score": 74.2,
+      "weather": {
+        "average_temperature": 27.8,
+        "humidity": 82,
+        "extreme_weather_conditions": "Tropical climate, storms"
+      },
+      "amenities_available": ["Parks", "Markets", "Cultural Centers", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Pakistan",
+  "cities": [
+    {
+      "name": "Karachi",
+      "population": 14910000,
+      "latitude": 24.8607,
+      "longitude": 67.0011,
+      "cost_of_living_index": 25.4,
+      "average_salary": 600,
+      "average_rent": 180,
+      "safety_index": 59.2,
+      "quality_of_life_index": 148.7,
+      "healthcare_index": 58.1,
+      "education_index": 66.3,
+      "job_availability_score": 62.4,
+      "public_transport_score": 67.5,
+      "weather": {
+        "average_temperature": 27.6,
+        "humidity": 69,
+        "extreme_weather_conditions": "Hot summers, mild winters"
+      },
+      "amenities_available": ["Beaches", "Markets", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Lahore",
+      "population": 11126000,
+      "latitude": 31.5497,
+      "longitude": 74.3436,
+      "cost_of_living_index": 26.1,
+      "average_salary": 620,
+      "average_rent": 190,
+      "safety_index": 60.3,
+      "quality_of_life_index": 150.2,
+      "healthcare_index": 59.6,
+      "education_index": 67.7,
+      "job_availability_score": 63.9,
+      "public_transport_score": 68.7,
+      "weather": {
+        "average_temperature": 25.3,
+        "humidity": 64,
+        "extreme_weather_conditions": "Hot summers, smog in winters"
+      },
+      "amenities_available": ["Historic Sites", "Mosques", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Islamabad",
+      "population": 1095064,
+      "latitude": 33.6844,
+      "longitude": 73.0479,
+      "cost_of_living_index": 27.0,
+      "average_salary": 650,
+      "average_rent": 200,
+      "safety_index": 62.5,
+      "quality_of_life_index": 152.0,
+      "healthcare_index": 60.9,
+      "education_index": 69.2,
+      "job_availability_score": 65.4,
+      "public_transport_score": 70.2,
+      "weather": {
+        "average_temperature": 22.4,
+        "humidity": 62,
+        "extreme_weather_conditions": "Monsoon rains, mild winters"
+      },
+      "amenities_available": ["Parks", "Hiking Trails", "Mosques", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Fiji",
+  "cities": [
+    {
+      "name": "Suva",
+      "population": 93870,
+      "latitude": -18.1416,
+      "longitude": 178.4419,
+      "cost_of_living_index": 47.3,
+      "average_salary": 1100,
+      "average_rent": 350,
+      "safety_index": 73.0,
+      "quality_of_life_index": 161.5,
+      "healthcare_index": 67.2,
+      "education_index": 75.1,
+      "job_availability_score": 69.6,
+      "public_transport_score": 73.8,
+      "weather": {
+        "average_temperature": 25.6,
+        "humidity": 83,
+        "extreme_weather_conditions": "Tropical storms and cyclones"
+      },
+      "amenities_available": ["Beaches", "Parks", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Lautoka",
+      "population": 52500,
+      "latitude": -17.6169,
+      "longitude": 177.4505,
+      "cost_of_living_index": 45.8,
+      "average_salary": 1050,
+      "average_rent": 330,
+      "safety_index": 72.1,
+      "quality_of_life_index": 160.0,
+      "healthcare_index": 66.0,
+      "education_index": 73.9,
+      "job_availability_score": 68.2,
+      "public_transport_score": 72.1,
+      "weather": {
+        "average_temperature": 26.1,
+        "humidity": 82,
+        "extreme_weather_conditions": "Heavy rainfall, humid conditions"
+      },
+      "amenities_available": ["Beaches", "Cafés", "Ports", "Public Transport"]
+    },
+    {
+      "name": "Nadi",
+      "population": 42284,
+      "latitude": -17.8021,
+      "longitude": 177.4180,
+      "cost_of_living_index": 46.5,
+      "average_salary": 1070,
+      "average_rent": 340,
+      "safety_index": 72.5,
+      "quality_of_life_index": 160.7,
+      "healthcare_index": 66.6,
+      "education_index": 74.5,
+      "job_availability_score": 68.9,
+      "public_transport_score": 72.9,
+      "weather": {
+        "average_temperature": 26.4,
+        "humidity": 84,
+        "extreme_weather_conditions": "Tropical climate, storms"
+      },
+      "amenities_available": ["Hotels", "Beaches", "Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Papua New Guinea",
+  "cities": [
+    {
+      "name": "Port Moresby",
+      "population": 383000,
+      "latitude": -9.4438,
+      "longitude": 147.1803,
+      "cost_of_living_index": 49.1,
+      "average_salary": 1000,
+      "average_rent": 400,
+      "safety_index": 58.2,
+      "quality_of_life_index": 150.6,
+      "healthcare_index": 60.3,
+      "education_index": 68.5,
+      "job_availability_score": 63.9,
+      "public_transport_score": 68.0,
+      "weather": {
+        "average_temperature": 27.8,
+        "humidity": 80,
+        "extreme_weather_conditions": "Heavy rain and humid"
+      },
+      "amenities_available": ["Beaches", "Markets", "Ports", "Public Transport"]
+    },
+    {
+      "name": "Lae",
+      "population": 148934,
+      "latitude": -6.7221,
+      "longitude": 146.9847,
+      "cost_of_living_index": 47.6,
+      "average_salary": 980,
+      "average_rent": 380,
+      "safety_index": 57.1,
+      "quality_of_life_index": 149.0,
+      "healthcare_index": 59.0,
+      "education_index": 67.3,
+      "job_availability_score": 62.7,
+      "public_transport_score": 66.4,
+      "weather": {
+        "average_temperature": 28.0,
+        "humidity": 81,
+        "extreme_weather_conditions": "Frequent storms"
+      },
+      "amenities_available": ["Parks", "Markets", "Industrial Ports", "Public Transport"]
+    },
+    {
+      "name": "Madang",
+      "population": 27420,
+      "latitude": -5.2217,
+      "longitude": 145.7963,
+      "cost_of_living_index": 46.2,
+      "average_salary": 950,
+      "average_rent": 360,
+      "safety_index": 56.3,
+      "quality_of_life_index": 147.9,
+      "healthcare_index": 58.1,
+      "education_index": 66.0,
+      "job_availability_score": 61.3,
+      "public_transport_score": 65.0,
+      "weather": {
+        "average_temperature": 27.5,
+        "humidity": 82,
+        "extreme_weather_conditions": "Hot, rainy seasons"
+      },
+      "amenities_available": ["Beaches", "Cultural Sites", "Ports", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Tonga",
+  "cities": [
+    {
+      "name": "Nuku'alofa",
+      "population": 24331,
+      "latitude": -21.1394,
+      "longitude": -175.2045,
+      "cost_of_living_index": 50.0,
+      "average_salary": 950,
+      "average_rent": 320,
+      "safety_index": 75.0,
+      "quality_of_life_index": 158.0,
+      "healthcare_index": 66.5,
+      "education_index": 73.2,
+      "job_availability_score": 66.5,
+      "public_transport_score": 70.8,
+      "weather": {
+        "average_temperature": 25.0,
+        "humidity": 85,
+        "extreme_weather_conditions": "Cyclones, heavy rain"
+      },
+      "amenities_available": ["Beaches", "Markets", "Local Shops", "Public Transport"]
+    },
+    {
+      "name": "Neiafu",
+      "population": 6200,
+      "latitude": -18.6500,
+      "longitude": -173.9833,
+      "cost_of_living_index": 48.5,
+      "average_salary": 930,
+      "average_rent": 310,
+      "safety_index": 74.3,
+      "quality_of_life_index": 157.1,
+      "healthcare_index": 65.2,
+      "education_index": 72.0,
+      "job_availability_score": 65.4,
+      "public_transport_score": 69.5,
+      "weather": {
+        "average_temperature": 25.7,
+        "humidity": 84,
+        "extreme_weather_conditions": "Tropical rains"
+      },
+      "amenities_available": ["Harbors", "Markets", "Local Restaurants", "Public Transport"]
+    },
+    {
+      "name": "Haveluloto",
+      "population": 3933,
+      "latitude": -21.1615,
+      "longitude": -175.1911,
+      "cost_of_living_index": 48.0,
+      "average_salary": 920,
+      "average_rent": 305,
+      "safety_index": 73.5,
+      "quality_of_life_index": 156.4,
+      "healthcare_index": 64.0,
+      "education_index": 70.9,
+      "job_availability_score": 64.7,
+      "public_transport_score": 68.3,
+      "weather": {
+        "average_temperature": 25.3,
+        "humidity": 83,
+        "extreme_weather_conditions": "Storms, high winds"
+      },
+      "amenities_available": ["Shops", "Churches", "Local Clinics", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Qatar",
+  "cities": [
+    {
+      "name": "Doha",
+      "population": 956457,
+      "latitude": 25.276987,
+      "longitude": 51.520008,
+      "cost_of_living_index": 72.0,
+      "average_salary": 4200,
+      "average_rent": 1600,
+      "safety_index": 82.1,
+      "quality_of_life_index": 170.6,
+      "healthcare_index": 81.0,
+      "education_index": 85.3,
+      "job_availability_score": 87.5,
+      "public_transport_score": 86.0,
+      "weather": {
+        "average_temperature": 33.2,
+        "humidity": 58,
+        "extreme_weather_conditions": "Extreme heat, sandstorms"
+      },
+      "amenities_available": ["Malls", "Parks", "Beaches", "Public Transport"]
+    },
+    {
+      "name": "Al Rayyan",
+      "population": 605712,
+      "latitude": 25.2867,
+      "longitude": 51.4244,
+      "cost_of_living_index": 70.8,
+      "average_salary": 4100,
+      "average_rent": 1500,
+      "safety_index": 81.3,
+      "quality_of_life_index": 169.2,
+      "healthcare_index": 80.0,
+      "education_index": 84.0,
+      "job_availability_score": 86.2,
+      "public_transport_score": 84.7,
+      "weather": {
+        "average_temperature": 32.5,
+        "humidity": 60,
+        "extreme_weather_conditions": "Very hot summers"
+      },
+      "amenities_available": ["Sports Venues", "Malls", "Schools", "Public Transport"]
+    },
+    {
+      "name": "Umm Salal",
+      "population": 90936,
+      "latitude": 25.4692,
+      "longitude": 51.3975,
+      "cost_of_living_index": 69.4,
+      "average_salary": 3900,
+      "average_rent": 1400,
+      "safety_index": 80.0,
+      "quality_of_life_index": 167.8,
+      "healthcare_index": 79.0,
+      "education_index": 82.5,
+      "job_availability_score": 85.0,
+      "public_transport_score": 83.5,
+      "weather": {
+        "average_temperature": 32.0,
+        "humidity": 61,
+        "extreme_weather_conditions": "High heat, low rainfall"
+      },
+      "amenities_available": ["Malls", "Local Clinics", "Residential Areas", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Jordan",
+  "cities": [
+    {
+      "name": "Amman",
+      "population": 4007526,
+      "latitude": 31.9539,
+      "longitude": 35.9106,
+      "cost_of_living_index": 50.6,
+      "average_salary": 1100,
+      "average_rent": 450,
+      "safety_index": 72.4,
+      "quality_of_life_index": 159.5,
+      "healthcare_index": 70.8,
+      "education_index": 76.5,
+      "job_availability_score": 70.1,
+      "public_transport_score": 72.9,
+      "weather": {
+        "average_temperature": 17.3,
+        "humidity": 55,
+        "extreme_weather_conditions": "Hot summers, mild winters"
+      },
+      "amenities_available": ["Historic Sites", "Cafés", "Markets", "Public Transport"]
+    },
+    {
+      "name": "Zarqa",
+      "population": 635160,
+      "latitude": 32.0728,
+      "longitude": 36.0880,
+      "cost_of_living_index": 48.2,
+      "average_salary": 1000,
+      "average_rent": 400,
+      "safety_index": 71.0,
+      "quality_of_life_index": 157.3,
+      "healthcare_index": 68.9,
+      "education_index": 74.3,
+      "job_availability_score": 68.7,
+      "public_transport_score": 71.2,
+      "weather": {
+        "average_temperature": 18.1,
+        "humidity": 53,
+        "extreme_weather_conditions": "Dry seasons, hot summers"
+      },
+      "amenities_available": ["Parks", "Markets", "Schools", "Public Transport"]
+    },
+    {
+      "name": "Irbid",
+      "population": 502714,
+      "latitude": 32.5569,
+      "longitude": 35.8478,
+      "cost_of_living_index": 47.5,
+      "average_salary": 980,
+      "average_rent": 390,
+      "safety_index": 70.2,
+      "quality_of_life_index": 156.4,
+      "healthcare_index": 68.0,
+      "education_index": 73.6,
+      "job_availability_score": 67.9,
+      "public_transport_score": 70.6,
+      "weather": {
+        "average_temperature": 17.5,
+        "humidity": 56,
+        "extreme_weather_conditions": "Cool winters, dry summers"
+      },
+      "amenities_available": ["Universities", "Shops", "Local Transport", "Parks"]
+    }
+  ]
+},
+{
+  "name": "Saudi Arabia",
+  "cities": [
+    {
+      "name": "Riyadh",
+      "population": 7678000,
+      "latitude": 24.7136,
+      "longitude": 46.6753,
+      "cost_of_living_index": 58.4,
+      "average_salary": 3200,
+      "average_rent": 1100,
+      "safety_index": 76.5,
+      "quality_of_life_index": 165.2,
+      "healthcare_index": 75.3,
+      "education_index": 80.2,
+      "job_availability_score": 81.6,
+      "public_transport_score": 79.8,
+      "weather": {
+        "average_temperature": 29.4,
+        "humidity": 44,
+        "extreme_weather_conditions": "Extreme heat, sandstorms"
+      },
+      "amenities_available": ["Malls", "Mosques", "Universities", "Public Transport"]
+    },
+    {
+      "name": "Jeddah",
+      "population": 3976000,
+      "latitude": 21.4858,
+      "longitude": 39.1925,
+      "cost_of_living_index": 56.7,
+      "average_salary": 3100,
+      "average_rent": 1050,
+      "safety_index": 75.2,
+      "quality_of_life_index": 163.8,
+      "healthcare_index": 74.0,
+      "education_index": 79.1,
+      "job_availability_score": 80.4,
+      "public_transport_score": 78.2,
+      "weather": {
+        "average_temperature": 30.1,
+        "humidity": 55,
+        "extreme_weather_conditions": "Very hot and humid summers"
+      },
+      "amenities_available": ["Beaches", "Cafés", "Shopping Centers", "Public Transport"]
+    },
+    {
+      "name": "Dammam",
+      "population": 1229000,
+      "latitude": 26.4207,
+      "longitude": 50.0888,
+      "cost_of_living_index": 55.2,
+      "average_salary": 2900,
+      "average_rent": 950,
+      "safety_index": 74.1,
+      "quality_of_life_index": 162.3,
+      "healthcare_index": 72.8,
+      "education_index": 77.4,
+      "job_availability_score": 79.0,
+      "public_transport_score": 77.0,
+      "weather": {
+        "average_temperature": 28.7,
+        "humidity": 52,
+        "extreme_weather_conditions": "Hot summers, sandstorms"
+      },
+      "amenities_available": ["Parks", "Malls", "Sea Corniche", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Lebanon",
+  "cities": [
+    {
+      "name": "Beirut",
+      "population": 361366,
+      "latitude": 33.8938,
+      "longitude": 35.5018,
+      "cost_of_living_index": 54.1,
+      "average_salary": 1400,
+      "average_rent": 550,
+      "safety_index": 68.7,
+      "quality_of_life_index": 158.1,
+      "healthcare_index": 71.2,
+      "education_index": 76.0,
+      "job_availability_score": 70.2,
+      "public_transport_score": 73.4,
+      "weather": {
+        "average_temperature": 20.4,
+        "humidity": 63,
+        "extreme_weather_conditions": "Mild winters, hot summers"
+      },
+      "amenities_available": ["Corniche", "Markets", "Cafés", "Public Transport"]
+    },
+    {
+      "name": "Tripoli",
+      "population": 229398,
+      "latitude": 34.4367,
+      "longitude": 35.8497,
+      "cost_of_living_index": 52.0,
+      "average_salary": 1300,
+      "average_rent": 500,
+      "safety_index": 67.2,
+      "quality_of_life_index": 156.6,
+      "healthcare_index": 69.4,
+      "education_index": 74.1,
+      "job_availability_score": 68.6,
+      "public_transport_score": 72.1,
+      "weather": {
+        "average_temperature": 19.8,
+        "humidity": 65,
+        "extreme_weather_conditions": "Rainy winters"
+      },
+      "amenities_available": ["Markets", "Historic Sites", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Sidon",
+      "population": 163554,
+      "latitude": 33.5570,
+      "longitude": 35.3729,
+      "cost_of_living_index": 51.2,
+      "average_salary": 1250,
+      "average_rent": 480,
+      "safety_index": 66.5,
+      "quality_of_life_index": 155.3,
+      "healthcare_index": 68.0,
+      "education_index": 72.8,
+      "job_availability_score": 67.3,
+      "public_transport_score": 70.8,
+      "weather": {
+        "average_temperature": 20.1,
+        "humidity": 66,
+        "extreme_weather_conditions": "Occasional storms"
+      },
+      "amenities_available": ["Harbors", "Old Town", "Markets", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Oman",
+  "cities": [
+    {
+      "name": "Muscat",
+      "population": 1461000,
+      "latitude": 23.5880,
+      "longitude": 58.3829,
+      "cost_of_living_index": 51.4,
+      "average_salary": 2700,
+      "average_rent": 900,
+      "safety_index": 78.3,
+      "quality_of_life_index": 162.0,
+      "healthcare_index": 73.9,
+      "education_index": 78.5,
+      "job_availability_score": 75.2,
+      "public_transport_score": 74.6,
+      "weather": {
+        "average_temperature": 28.5,
+        "humidity": 57,
+        "extreme_weather_conditions": "Hot and dry"
+      },
+      "amenities_available": ["Beaches", "Souks", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Salalah",
+      "population": 197169,
+      "latitude": 17.0190,
+      "longitude": 54.0897,
+      "cost_of_living_index": 49.8,
+      "average_salary": 2500,
+      "average_rent": 850,
+      "safety_index": 77.0,
+      "quality_of_life_index": 160.2,
+      "healthcare_index": 72.4,
+      "education_index": 77.1,
+      "job_availability_score": 73.8,
+      "public_transport_score": 73.1,
+      "weather": {
+        "average_temperature": 26.7,
+        "humidity": 60,
+        "extreme_weather_conditions": "Monsoon season"
+      },
+      "amenities_available": ["Parks", "Mountains", "Beaches", "Public Transport"]
+    },
+    {
+      "name": "Sohar",
+      "population": 221605,
+      "latitude": 24.2155,
+      "longitude": 56.6560,
+      "cost_of_living_index": 48.6,
+      "average_salary": 2400,
+      "average_rent": 820,
+      "safety_index": 76.2,
+      "quality_of_life_index": 159.1,
+      "healthcare_index": 71.1,
+      "education_index": 75.9,
+      "job_availability_score": 72.4,
+      "public_transport_score": 72.0,
+      "weather": {
+        "average_temperature": 27.8,
+        "humidity": 58,
+        "extreme_weather_conditions": "Hot summers"
+      },
+      "amenities_available": ["Ports", "Malls", "Parks", "Public Transport"]
+    }
+  ]
+},
+{
+  "name": "Kuwait",
+  "cities": [
+    {
+      "name": "Kuwait City",
+      "population": 2989000,
+      "latitude": 29.3759,
+      "longitude": 47.9774,
+      "cost_of_living_index": 60.7,
+      "average_salary": 3600,
+      "average_rent": 1300,
+      "safety_index": 79.4,
+      "quality_of_life_index": 167.5,
+      "healthcare_index": 77.8,
+      "education_index": 82.2,
+      "job_availability_score": 83.1,
+      "public_transport_score": 80.3,
+      "weather": {
+        "average_temperature": 30.0,
+        "humidity": 45,
+        "extreme_weather_conditions": "Extreme heat, sandstorms"
+      },
+      "amenities_available": ["Malls", "Museums", "Parks", "Public Transport"]
+    },
+    {
+      "name": "Hawally",
+      "population": 164212,
+      "latitude": 29.3331,
+      "longitude": 48.0286,
+      "cost_of_living_index": 58.9,
+      "average_salary": 3400,
+      "average_rent": 1250,
+      "safety_index": 78.1,
+      "quality_of_life_index": 166.0,
+      "healthcare_index": 76.5,
+      "education_index": 80.8,
+      "job_availability_score": 81.5,
+      "public_transport_score": 78.9,
+      "weather": {
+        "average_temperature": 29.5,
+        "humidity": 47,
+        "extreme_weather_conditions": "Hot summers, low rainfall"
+      },
+      "amenities_available": ["Shops", "Cafés", "Mosques", "Public Transport"]
+    },
+    {
+      "name": "Salmiya",
+      "population": 316000,
+      "latitude": 29.3333,
+      "longitude": 48.0833,
+      "cost_of_living_index": 59.4,
+      "average_salary": 3500,
+      "average_rent": 1280,
+      "safety_index": 78.7,
+      "quality_of_life_index": 166.8,
+      "healthcare_index": 77.2,
+      "education_index": 81.6,
+      "job_availability_score": 82.3,
+      "public_transport_score": 79.5,
+      "weather": {
+        "average_temperature": 29.7,
+        "humidity": 46,
+        "extreme_weather_conditions": "Hot, dusty summers"
+      },
+      "amenities_available": ["Beaches", "Malls", "Restaurants", "Public Transport"]
+    }
+  ]
 }
 ]
 }
