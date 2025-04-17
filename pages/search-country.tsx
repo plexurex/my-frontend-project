@@ -1,26 +1,55 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SearchCountry = () => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [result, setResult] = useState<{ country: string; cities: { name: string }[] } | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const [popularCountries, setPopularCountries] = useState([
+    "United States", "United Kingdom", "Canada", "Australia", 
+    "Germany", "Japan", "Singapore", "United Arab Emirates"
+  ]);
+
+  useEffect(() => {
+    setMounted(true);
+    // Get recent searches from localStorage
+    const savedSearches = localStorage.getItem("recentCountrySearches");
+    if (savedSearches) {
+      setRecentSearches(JSON.parse(savedSearches));
+    }
+  }, []);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!searchQuery.trim()) return;
+    
     setLoading(true);
     setError("");
     setResult(null);
+    
     try {
       // Call your backend endpoint to fetch cities for the given country
-      const res = await fetch(`http://127.0.0.1:8000/api/countries/${encodeURIComponent(searchQuery)}/cities/`);
+      const res = await fetch(`http://127.0.0.1:8000/api/countries/${encodeURIComponent(searchQuery.trim())}/cities/`);
+      
       if (!res.ok) {
         throw new Error("Country not found or error occurred");
       }
+      
       const data = await res.json();
       setResult(data);
+      
+      // Save this search to recent searches
+      const updatedSearches = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5);
+      setRecentSearches(updatedSearches);
+      localStorage.setItem("recentCountrySearches", JSON.stringify(updatedSearches));
+      
     } catch (err: any) {
       setError(err.message || "An error occurred");
     } finally {
@@ -28,45 +57,207 @@ const SearchCountry = () => {
     }
   };
 
+  const handleQuickSearch = (country: string) => {
+    setSearchQuery(country);
+    // Submit the form programmatically
+    handleSearch(new Event('submit') as any);
+  };
+
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Search for a Country</h1>
-      <form onSubmit={handleSearch} className="mb-4">
-        <input 
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Enter country name..."
-          className="w-full border p-2 rounded"
-          required
-        />
-        <button 
-          type="submit"
-          className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-        >
-          Search
-        </button>
-      </form>
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-      {result && (
-        <div>
-          <h2 className="text-xl font-semibold mb-2">{result.country}</h2>
-          {result.cities && result.cities.length > 0 ? (
-            <ul className="list-disc ml-6">
-              {result.cities.map((city, index) => (
-                <li key={index}>
-                  <Link href={`/city-details/${encodeURIComponent(city.name)}`}>
-                    <span className="text-blue-600 hover:underline">{city.name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No cities found for this country.</p>
-          )}
+    <div className="container mx-auto px-6 py-8">
+      <div className="gradient-header mb-10">
+        <h1 className="text-h1 font-heading text-center">Search Countries</h1>
+        <p className="text-center mt-2 opacity-90">Find cities and explore migration destinations</p>
+      </div>
+
+      <div className="max-w-4xl mx-auto">
+        {/* Search Form */}
+        <div className={`bg-surface p-8 rounded-xl shadow-medium mb-8 ${mounted ? 'animate-fade-in' : ''}`}>
+          <form onSubmit={handleSearch} className="space-y-4">
+            <div className="flex flex-col">
+              <label className="text-h5 font-heading text-primary mb-2">Enter a Country Name</label>
+              <div className="relative">
+                <input 
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="e.g. Canada, Japan, Germany..."
+                  className="w-full border border-subdued p-3 pl-10 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                  required
+                />
+                <div className="absolute left-3 top-3 text-subdued">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <button 
+              type="submit"
+              className="w-full px-6 py-3 bg-accent hover:bg-accent/90 text-white rounded-lg flex items-center justify-center transition-all transform hover:-translate-y-1"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <div className="h-5 w-5 border-t-2 border-r-2 border-white border-opacity-50 rounded-full animate-spin mr-2"></div>
+                  Searching...
+                </>
+              ) : (
+                <>
+                  Search Country
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                  </svg>
+                </>
+              )}
+            </button>
+          </form>
+          
+          {/* Quick Access Sections */}
+          <div className="mt-8 space-y-6">
+            {/* Recent Searches */}
+            {recentSearches.length > 0 && (
+              <div>
+                <h3 className="text-body font-bold mb-2 text-primary">Recent Searches</h3>
+                <div className="flex flex-wrap gap-2">
+                  {recentSearches.map((search, index) => (
+                    <button 
+                      key={index}
+                      onClick={() => handleQuickSearch(search)}
+                      className="px-3 py-1 bg-skyblue/10 text-skyblue rounded-full text-sm hover:bg-skyblue/20 transition-all"
+                    >
+                      {search}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Popular Countries */}
+            <div>
+              <h3 className="text-body font-bold mb-2 text-primary">Popular Countries</h3>
+              <div className="flex flex-wrap gap-2">
+                {popularCountries.map((country, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => handleQuickSearch(country)}
+                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-all"
+                  >
+                    {country}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      )}
+        
+        {/* Results Section */}
+        {error ? (
+          <div className="bg-error/10 border-l-4 border-error p-6 rounded-lg animate-fade-in">
+            <h3 className="text-h4 font-heading text-error mb-2">Country Not Found</h3>
+            <p className="text-subdued">We couldn't find information for "{searchQuery}". Please check the spelling or try another country.</p>
+          </div>
+        ) : result ? (
+          <div className="bg-surface p-8 rounded-xl shadow-medium animate-slide-up">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+              <div>
+                <h2 className="text-h2 font-heading text-primary">{result.country}</h2>
+                <p className="text-subdued">{result.cities.length} Cities Available</p>
+              </div>
+              <Link 
+                href={`/country-details/${encodeURIComponent(result.country)}`}
+                className="mt-3 md:mt-0 px-4 py-2 bg-primary text-white rounded-lg inline-flex items-center hover:bg-primary/90 transition-colors"
+              >
+                Country Details
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
+            
+            {result.cities && result.cities.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {result.cities.map((city, index) => (
+                  <Link 
+                    key={index} 
+                    href={`/city-details/${encodeURIComponent(city.name)}`}
+                    className="bg-background p-4 rounded-lg hover:shadow-medium transition-all transform hover:-translate-y-1 hover:bg-primary/5 border border-subdued/20"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <div className="flex items-center">
+                      <div className="h-10 w-10 bg-gradient-to-br from-skyblue to-secondary rounded-full flex items-center justify-center text-white mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="text-primary font-semibold">{city.name}</h3>
+                        <p className="text-xs text-subdued">View details</p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-skyblue/10 border-l-4 border-skyblue p-4 rounded-lg">
+                <p className="text-subdued">No cities found for this country.</p>
+              </div>
+            )}
+            
+            {/* Compare Cities Button */}
+            {result.cities && result.cities.length > 1 && (
+              <div className="mt-8 text-center">
+                <button 
+                  onClick={() => router.push(`/compare-cities/${encodeURIComponent(result.country)}`)}
+                  className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg inline-flex items-center transition-all transform hover:-translate-y-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+                  </svg>
+                  Compare Cities in {result.country}
+                </button>
+              </div>
+            )}
+          </div>
+        ) : null}
+        
+        {/* Intro Section for new users */}
+        {!result && !error && !loading && (
+          <div className="bg-surface p-8 rounded-xl shadow-medium mt-8 flex flex-col md:flex-row items-center">
+            <div className="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+              <h2 className="text-h3 font-heading text-primary mb-4">Find Your Destination</h2>
+              <p className="text-subdued mb-4">
+                Search for any country to discover cities that could be your next home. 
+                Get detailed information about living costs, job opportunities, and more.
+              </p>
+              <ul className="space-y-2">
+                {[
+                  "View available cities in each country",
+                  "Access detailed city information",
+                  "Compare multiple cities side by side",
+                  "Discover quality of life metrics"
+                ].map((point, index) => (
+                  <li key={index} className="flex items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-accent mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:w-1/2">
+              <div className="bg-gradient-to-br from-primary to-skyblue rounded-xl h-48 md:h-64 flex items-center justify-center text-white text-center p-6">
+                <div>
+                  <div className="text-5xl mb-4">🌎</div>
+                  <p className="text-xl font-bold">Explore Global Opportunities</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

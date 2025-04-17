@@ -10,8 +10,11 @@ export default function MLRecommendations() {
   const [cities, setCities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    
     const fetchMLRecommendations = async () => {
       setLoading(true);
       setError("");
@@ -41,52 +44,104 @@ export default function MLRecommendations() {
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-h1 font-heading mb-4">ML-Based Recommended Cities</h1>
+    <div className="container mx-auto px-6 py-8">
+      <div className="gradient-header mb-10">
+        <h1 className="text-h1 font-heading text-center">ML-Based City Recommendations</h1>
+        <p className="text-center mt-2 opacity-90">Personalized city suggestions powered by machine learning</p>
+      </div>
+      
       {loading ? (
-        <LoadingSpinner />
+        <div className="flex flex-col items-center justify-center py-20">
+          <LoadingSpinner />
+          <p className="mt-4 text-subdued">Finding your ideal cities...</p>
+        </div>
       ) : error ? (
-        <p className="text-body text-error">{error}</p>
+        <div className="bg-error/10 border-l-4 border-error p-4 rounded-lg">
+          <p className="text-body text-error">{error}</p>
+        </div>
       ) : cities.length === 0 ? (
-        <p className="text-body">No matching cities found.</p>
+        <div className="bg-skyblue/10 border-l-4 border-skyblue p-6 rounded-lg text-center">
+          <p className="text-body">No matching cities found based on your criteria.</p>
+          <button 
+            onClick={() => router.push('/preferences')}
+            className="mt-4 bg-skyblue hover:bg-skyblue/90 text-white"
+          >
+            Adjust Your Preferences
+          </button>
+        </div>
       ) : (
-        <>
-          <ul className="list-none p-0 space-y-4">
+        <div className={`space-y-12 ${mounted ? 'animate-fade-in' : ''}`}>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {cities.map((city, index) => (
               <li
                 key={index}
-                className="cursor-pointer mb-4 p-4 border border-subdued rounded-medium shadow-subtle hover:bg-accent/10"
+                className="cursor-pointer p-6 bg-surface rounded-xl shadow-medium hover:shadow-lg transform transition-all duration-300 hover:-translate-y-2 border-l-4 border-accent"
                 onClick={() => handleCityClick(city.city)}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <strong className="text-h3">
-                  {city.city}, {city.country}
-                </strong>
-                <p className="text-body">Similarity Score: {city.similarity}</p>
-                <p className="text-body">
-                  Average Salary: ${city.average_salary}
-                </p>
-                <p className="text-body">Average Rent: ${city.average_rent}</p>
-                <p className="text-body">Safety Index: {city.safety_index}</p>
-                <p className="text-body">
-                  Quality of Life: {city.quality_of_life_index}
-                </p>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-h3 font-heading text-primary mb-2">
+                      {city.city}
+                    </h2>
+                    <p className="text-subdued mb-4">{city.country}</p>
+                  </div>
+                  <div className="bg-primary/10 text-primary font-bold px-3 py-1 rounded-full">
+                    {Math.round(city.similarity * 100)}% Match
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Salary</p>
+                    <p className="text-lg font-bold">${city.average_salary}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Rent</p>
+                    <p className="text-lg font-bold">${city.average_rent}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Safety</p>
+                    <p className="text-lg font-bold">{city.safety_index}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Quality of Life</p>
+                    <p className="text-lg font-bold">{city.quality_of_life_index}</p>
+                  </div>
+                </div>
+                
+                <button className="mt-6 w-full bg-accent hover:bg-accent/90 text-white py-2 px-4 rounded-lg">
+                  View Details
+                </button>
               </li>
             ))}
           </ul>
-          <h2 className="text-h2 font-medium mt-8 mb-4">
-            Compare City Metrics
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <CityComparisonChart
-              cities={cities.map((city) => ({
-                name: city.city,
-                average_salary: city.average_salary,
-                average_rent: city.average_rent,
-                quality_of_life_index: city.quality_of_life_index,
-              }))}
-            />
+          
+          <div className="bg-surface p-8 rounded-xl shadow-medium">
+            <h2 className="text-h2 font-heading text-primary mb-8 text-center">
+              Compare City Metrics
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <CityComparisonChart
+                cities={cities.map((city) => ({
+                  name: city.city,
+                  average_salary: city.average_salary,
+                  average_rent: city.average_rent,
+                  quality_of_life_index: city.quality_of_life_index,
+                }))}
+              />
+            </div>
           </div>
-        </>
+          
+          <div className="flex justify-center">
+            <button 
+              onClick={() => router.push('/preferences')}
+              className="bg-primary hover:bg-primary/90 text-white"
+            >
+              Refine Your Search
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

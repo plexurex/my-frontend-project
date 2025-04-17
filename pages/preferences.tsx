@@ -1,9 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 
 const Preferences = () => {
   const router = useRouter();
+  const [activeSection, setActiveSection] = useState(1);
+  const [mounted, setMounted] = useState(false);
+
+  // Rent and salary limits from countries.json data
+  const RENT_MIN = 0;
+  const RENT_MAX = 3000; // Setting slightly higher than max found ($2500)
+  const SALARY_MIN = 0;
+  const SALARY_MAX = 7000; // Setting slightly higher than max found ($6200)
 
   // User preferences state
   const [preferences, setPreferences] = useState({
@@ -29,43 +38,86 @@ const Preferences = () => {
 
   // List of all available amenities
   const availableAmenities = [
-    "Parks",
-    "Beaches",
-    "Museums",
-    "Theaters",
-    "Cafés",
-    "Shopping Malls",
-    "Markets",
-    "Historical Sites",
-    "Nightlife",
-    "Public Transport",
-    "Cultural Centers",
-    "Libraries",
-    "Restaurants",
-    "Universities",
-    "Bicycle Lanes",
-    "Local Markets",
-    "Seaside Walks",
-    "Botanical Gardens",
-    "Football Stadiums",
-    "Concert Halls",
-    "Government Buildings",
-    "Harbor Views",
-    "Ski Resorts",
-    "Thermal Pools",
-    "Thermal Springs",
-    "Heritage Sites",
-    "Night Markets",
-    "Shopping Centers",
-    "Riverside Walks",
-    "Cultural Landmarks",
-    "Entertainment Centers",
-    "Churches",
-    "Landmarks",
     "Airports",
+    "Beaches",
+    "Cafes",
+    "City Centers",
+    "Co-working Spaces",
+    "Countryside",
+    "Cultural Attractions",
+    "Entertainment Districts",
+    "Fitness Centers",
+    "Forest Areas",
+    "Gyms",
+    "Healthcare Facilities",
+    "Historic Sites",
+    "Hotels",
+    "Landmarks",
+    "Libraries",
+    "Markets",
+    "Mountains",
+    "Museums",
+    "Nightlife",
+    "Parks",
+    "Public Pools",
+    "Pyramids",
+    "Residential Areas",
+    "Restaurants",
+    "Riverside Walks",
+    "Saunas",
+    "Schools",
+    "Sea Corniche",
+    "Seaside Views",
+    "Seaside Walks",
+    "Shopping Centers",
+    "Shopping Districts",
+    "Ski Resorts",
+    "Souks",
+    "Sports Venues",
+    "Temples",
+    "Theaters",
+    "Thermal Springs",
+    "Universities",
+    "Wineries"
   ];
 
   const [selectedAmenity, setSelectedAmenity] = useState("");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Handle rent input change with validation
+  const handleRentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Empty value is allowed (clear field)
+    if (value === "") {
+      setPreferences({ ...preferences, rent: value });
+      return;
+    }
+    
+    const numValue = parseInt(value);
+    if (!isNaN(numValue) && numValue >= RENT_MIN && numValue <= RENT_MAX) {
+      setPreferences({ ...preferences, rent: value });
+    }
+  };
+  
+  // Handle salary input change with validation
+  const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Empty value is allowed (clear field)
+    if (value === "") {
+      setPreferences({ ...preferences, salary: value });
+      return;
+    }
+    
+    const numValue = parseInt(value);
+    if (!isNaN(numValue) && numValue >= SALARY_MIN && numValue <= SALARY_MAX) {
+      setPreferences({ ...preferences, salary: value });
+    }
+  };
 
   // Handles checkbox updates for preferences
   const handleCheckboxChange = (key: keyof typeof preferences) => {
@@ -78,50 +130,67 @@ const Preferences = () => {
   // Handles form submission (final submission uses only basic preferences)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Construct query parameters from basic preferences
-    const params = new URLSearchParams({
-      rent: preferences.rent,
-      salary: preferences.salary,
-      amenities: preferences.amenities.join(","),
-      mosques_nearby: preferences.mosques_nearby ? "true" : "false",
-      churches_nearby: preferences.churches_nearby ? "true" : "false",
-      job_opportunities: preferences.job_opportunities ? "true" : "false",
-      quality_of_life: preferences.quality_of_life ? "true" : "false",
-      cost_of_living: preferences.cost_of_living ? "true" : "false",
-      public_transport: preferences.public_transport ? "true" : "false",
-      safety: preferences.safety ? "true" : "false",
-      education_quality: preferences.education_quality ? "true" : "false",
-    }).toString();
-
-    // (Optionally, merge userResponses into the query if needed for refinement)
-
-    router.push(`/recommendations?${params}`);
+  
+    // Merge the basic preferences with follow-up responses.
+    const allFilters = { ...preferences };
+    
+    // Create URLSearchParams
+    const params = new URLSearchParams();
+    
+    // Add rent and salary if present
+    if (preferences.rent) params.set('rent', preferences.rent);
+    if (preferences.salary) params.set('salary', preferences.salary);
+    
+    // Add amenities as a comma-separated list
+    if (preferences.amenities.length > 0) {
+      params.set('amenities', preferences.amenities.join(','));
+    }
+    
+    // Add all boolean preferences that are true
+    Object.entries(preferences).forEach(([key, value]) => {
+      if (typeof value === 'boolean' && value) {
+        params.set(key, 'true');
+      }
+    });
+    
+    // Add all follow-up responses
+    Object.entries(userResponses).forEach(([key, value]) => {
+      params.set(`followup_${key}`, value);
+    });
+    
+    // Choose endpoint based on whether follow-up responses are present
+    const endpoint = Object.keys(userResponses).length > 0 
+      ? '/ml-recommendations' 
+      : '/recommendations';
+    
+    // Navigate with the assembled params
+    router.push(`${endpoint}?${params.toString()}`);
   };
 
-  // Function to call the backend to get follow-up questions from GPT-3
+  // Fetch follow-up questions based on current preferences
   const fetchFollowUpQuestions = async () => {
     setLoadingFollowUp(true);
     setFollowUpError("");
+
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/generate-followup-questions/", {
+      const response = await fetch("http://127.0.0.1:8000/api/generate-followup-questions/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({ preferences }),
+        body: JSON.stringify({ preferences }), // Notice the preferences is wrapped in an object
         cache: "no-cache",
       });
-      
-      if (!res.ok) {
-        throw new Error(`Failed to fetch follow-up questions: ${res.status}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch follow-up questions: ${response.status}`);
       }
-  
-      const data = await res.json();
+
+      const data = await response.json();
       setFollowUpQuestions(data.questions || []);
-    } catch (error: any) {
-      console.error("Error fetching follow-up questions:", error);
+    } catch (err) {
+      console.error("Error fetching follow-up questions:", err);
       setFollowUpError("Failed to fetch follow-up questions. Please try again.");
     } finally {
       setLoadingFollowUp(false);
@@ -136,211 +205,391 @@ const Preferences = () => {
     }));
   };
 
+  const nextSection = () => {
+    setActiveSection(prev => Math.min(prev + 1, 3));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const prevSection = () => {
+    setActiveSection(prev => Math.max(prev - 1, 1));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="container mx-auto p-6 max-w-2xl">
-      <h1 className="text-2xl font-bold mb-6">Set Your Preferences</h1>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Rent & Salary Inputs */}
-        <div>
-          <label className="block font-medium mb-1">
-            Maximum Rent (USD):
-          </label>
-          <input
-            type="number"
-            value={preferences.rent}
-            onChange={(e) =>
-              setPreferences({ ...preferences, rent: e.target.value })
-            }
-            className="border border-subdued p-2 rounded w-full max-w-xs"
-            placeholder="e.g. 2000"
-          />
+    <div className={`container mx-auto px-6 py-8 ${mounted ? 'animate-fade-in' : ''}`}>
+      <div className="gradient-header mb-10">
+        <h1 className="text-h1 font-heading text-center">Set Your Preferences</h1>
+        <p className="text-center mt-2 opacity-90">Help us find your perfect city match</p>
+      </div>
+      
+      <div className="max-w-4xl mx-auto">
+        {/* Progress Indicator */}
+        <div className="flex items-center justify-between mb-10 px-2 relative">
+          {/* Position the line properly */}
+          <div className="h-1 bg-gray-200 absolute w-[85%] left-[7.5%] z-0 top-[40%] -translate-y-1/2"></div>
+          
+          {[1, 2, 3].map((step) => (
+            <div key={step} className="flex flex-col items-center z-10 relative">
+              <div 
+                className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
+                  ${activeSection >= step 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-200 text-gray-500'}`}
+              >
+                {step}
+              </div>
+              <span className={`mt-2 text-sm ${activeSection >= step ? 'text-primary font-semibold' : 'text-subdued'}`}>
+                {step === 1 ? 'Basic Info' : step === 2 ? 'Amenities' : 'Preferences'}
+              </span>
+            </div>
+          ))}
         </div>
 
-        <div>
-          <label className="block font-medium mb-1">
-            Minimum Salary (USD):
-          </label>
-          <input
-            type="number"
-            value={preferences.salary}
-            onChange={(e) =>
-              setPreferences({ ...preferences, salary: e.target.value })
-            }
-            className="border border-subdued p-2 rounded w-full max-w-xs"
-            placeholder="e.g. 6000"
-          />
-        </div>
-
-        {/* Desired Amenities Selection */}
-        <div>
-          <label className="block font-medium mb-1">
-            Desired Amenities:
-          </label>
-          <div className="flex items-center space-x-2">
-            <select
-              value={selectedAmenity}
-              onChange={(e) => setSelectedAmenity(e.target.value)}
-              className="border border-subdued p-2 rounded w-full max-w-xs"
-            >
-              <option value="">Select an amenity</option>
-              {availableAmenities.map((amenity, index) => (
-                <option key={index} value={amenity}>
-                  {amenity}
-                </option>
-              ))}
-            </select>
-            <button
-              type="button"
-              onClick={() => {
-                if (
-                  selectedAmenity &&
-                  !preferences.amenities.includes(selectedAmenity)
-                ) {
-                  setPreferences((prev) => ({
-                    ...prev,
-                    amenities: [...prev.amenities, selectedAmenity],
-                  }));
-                  setSelectedAmenity("");
-                }
-              }}
-              className="px-4 py-2 bg-primary text-surface rounded hover:bg-accent"
-            >
-              Add Amenity
-            </button>
+        <form onSubmit={handleSubmit} className="bg-surface p-8 rounded-xl shadow-medium">
+          {/* Section 1: Basic Info */}
+          <div className={`${activeSection === 1 ? 'block' : 'hidden'} space-y-8`}>
+            <div className="text-center mb-8">
+              <h2 className="text-h3 font-heading text-primary">Financial Preferences</h2>
+              <p className="text-subdued">Let's start with your budget considerations</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="block font-medium text-primary mb-1">Maximum Rent (USD):</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-subdued">$</span>
+                  <input
+                    type="number"
+                    value={preferences.rent}
+                    onChange={handleRentChange}
+                    min={RENT_MIN}
+                    max={RENT_MAX}
+                    className="border border-subdued p-2 pl-8 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                    placeholder="e.g. 2000"
+                  />
+                </div>
+                <p className="text-xs text-subdued italic">Maximum monthly rent you're willing to pay (0-{RENT_MAX} USD)</p>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="block font-medium text-primary mb-1">Minimum Salary (USD):</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-3 text-subdued">$</span>
+                  <input
+                    type="number"
+                    value={preferences.salary}
+                    onChange={handleSalaryChange}
+                    min={SALARY_MIN}
+                    max={SALARY_MAX}
+                    className="border border-subdued p-2 pl-8 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                    placeholder="e.g. 2000"
+                  />
+                </div>
+                <p className="text-xs text-subdued italic">Minimum monthly salary you'd expect (0-{SALARY_MAX} USD)</p>
+              </div>
+            </div>
+            
+            <div className="flex justify-end mt-8">
+              <button
+                type="button"
+                onClick={nextSection}
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition flex items-center"
+              >
+                Next Step
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
           </div>
-          {/* Display Selected Amenities */}
-          <ul className="mt-2 space-y-1">
-            {preferences.amenities.map((amenity, index) => (
-              <li key={index} className="flex items-center space-x-2">
-                <span className="text-body">{amenity}</span>
+
+          {/* Section 2: Amenities */}
+          <div className={`${activeSection === 2 ? 'block' : 'hidden'} space-y-8`}>
+            <div className="text-center mb-8">
+              <h2 className="text-h3 font-heading text-primary">Desired Amenities</h2>
+              <p className="text-subdued">Select amenities that matter to you</p>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex-grow">
+                  <select
+                    value={selectedAmenity}
+                    onChange={(e) => setSelectedAmenity(e.target.value)}
+                    className="border border-subdued p-3 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                  >
+                    <option value="">Select an amenity</option>
+                    {availableAmenities.map((amenity, index) => (
+                      <option key={index} value={amenity}>
+                        {amenity}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <button
                   type="button"
-                  onClick={() =>
-                    setPreferences((prev) => ({
-                      ...prev,
-                      amenities: prev.amenities.filter((a) => a !== amenity),
-                    }))
-                  }
-                  className="text-error hover:underline"
+                  onClick={() => {
+                    if (selectedAmenity && !preferences.amenities.includes(selectedAmenity)) {
+                      setPreferences((prev) => ({
+                        ...prev,
+                        amenities: [...prev.amenities, selectedAmenity],
+                      }));
+                      setSelectedAmenity("");
+                    }
+                  }}
+                  className="px-4 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition flex-shrink-0"
                 >
-                  ❌
+                  Add Amenity
                 </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Additional Preferences */}
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Additional Preferences</h3>
-          <div className="space-y-2">
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.mosques_nearby}
-                onChange={() => handleCheckboxChange("mosques_nearby")}
-              />
-              <span className="text-body">Mosques Nearby</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.churches_nearby}
-                onChange={() => handleCheckboxChange("churches_nearby")}
-              />
-              <span className="text-body">Churches Nearby</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.job_opportunities}
-                onChange={() => handleCheckboxChange("job_opportunities")}
-              />
-              <span className="text-body">Job &amp; Career Opportunities</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.quality_of_life}
-                onChange={() => handleCheckboxChange("quality_of_life")}
-              />
-              <span className="text-body">Quality of Life &amp; Social Factors</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.cost_of_living}
-                onChange={() => handleCheckboxChange("cost_of_living")}
-              />
-              <span className="text-body">Cost of Living</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.public_transport}
-                onChange={() => handleCheckboxChange("public_transport")}
-              />
-              <span className="text-body">Public Transport Availability</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.safety}
-                onChange={() => handleCheckboxChange("safety")}
-              />
-              <span className="text-body">Safety &amp; Low Crime Rate</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={preferences.education_quality}
-                onChange={() => handleCheckboxChange("education_quality")}
-              />
-              <span className="text-body">High-Quality Education</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Button to fetch follow-up questions */}
-        <button
-          type="button"
-          onClick={fetchFollowUpQuestions}
-          className="px-4 py-2 bg-secondary text-white rounded"
-        >
-          Refine Recommendations (Get Follow-Up Questions)
-        </button>
-
-        {loadingFollowUp && <p>Loading follow-up questions...</p>}
-        {followUpError && <p className="text-red-500">{followUpError}</p>}
-
-        {/* Render follow-up questions dynamically */}
-        {followUpQuestions.length > 0 && (
-          <div>
-            <h3>Follow-Up Questions:</h3>
-            {followUpQuestions.map((question, index) => (
-              <div key={index}>
-                <label>{question}</label>
-                <input
-                  type="text"
-                  onChange={(e) =>
-                    handleQuestionResponse(index.toString(), e.target.value)
-                  }
-                />
               </div>
-            ))}
+              
+              {/* Selected Amenities */}
+              <div className="mt-6">
+                <h3 className="font-medium text-primary mb-3">Selected Amenities:</h3>
+                {preferences.amenities.length === 0 ? (
+                  <p className="text-subdued italic">No amenities selected yet</p>
+                ) : (
+                  <div className="flex flex-wrap gap-2">
+                    {preferences.amenities.map((amenity, index) => (
+                      <div 
+                        key={index} 
+                        className="bg-background rounded-full px-3 py-1 flex items-center group"
+                      >
+                        <span className="text-sm">{amenity}</span>
+                        <button
+                          type="button"
+                          onClick={() => setPreferences((prev) => ({
+                            ...prev,
+                            amenities: prev.amenities.filter((a) => a !== amenity),
+                          }))}
+                          className="ml-2 text-subdued hover:text-error"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="flex justify-between mt-8">
+              <button
+                type="button"
+                onClick={prevSection}
+                className="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition flex items-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                Previous
+              </button>
+              <button
+                type="button"
+                onClick={nextSection}
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition flex items-center"
+              >
+                Next Step
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
           </div>
-        )}
-        
 
-        <button
-          type="submit"
-          className="mt-4 px-4 py-2 bg-primary text-surface rounded shadow-medium hover:bg-accent"
-        >
-          Find Countries
-        </button>
-      </form>
-      
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+          {/* Section 3: Additional Preferences */}
+          <div className={`${activeSection === 3 ? 'block' : 'hidden'} space-y-8`}>
+            <div className="text-center mb-8">
+              <h2 className="text-h3 font-heading text-primary">Additional Preferences</h2>
+              <p className="text-subdued">Fine-tune your city preferences</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.mosques_nearby}
+                    onChange={() => handleCheckboxChange("mosques_nearby")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Mosques Nearby</span>
+                    <p className="text-xs text-subdued mt-0.5">Access to local mosques and Islamic centers</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.churches_nearby}
+                    onChange={() => handleCheckboxChange("churches_nearby")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Churches Nearby</span>
+                    <p className="text-xs text-subdued mt-0.5">Access to local churches and Christian communities</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.job_opportunities}
+                    onChange={() => handleCheckboxChange("job_opportunities")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Job Opportunities</span>
+                    <p className="text-xs text-subdued mt-0.5">Cities with strong job markets and career growth</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.quality_of_life}
+                    onChange={() => handleCheckboxChange("quality_of_life")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Quality of Life</span>
+                    <p className="text-xs text-subdued mt-0.5">Focus on cities with high quality of living standards</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.cost_of_living}
+                    onChange={() => handleCheckboxChange("cost_of_living")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Cost of Living</span>
+                    <p className="text-xs text-subdued mt-0.5">Emphasis on affordable living expenses</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.public_transport}
+                    onChange={() => handleCheckboxChange("public_transport")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Public Transport</span>
+                    <p className="text-xs text-subdued mt-0.5">Good public transportation networks</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.safety}
+                    onChange={() => handleCheckboxChange("safety")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Safety</span>
+                    <p className="text-xs text-subdued mt-0.5">Cities with low crime rates and high safety standards</p>
+                  </span>
+                </label>
+              </div>
+              
+              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
+                <label className="flex items-center space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={preferences.education_quality}
+                    onChange={() => handleCheckboxChange("education_quality")}
+                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
+                  />
+                  <span>
+                    <span className="font-medium">Education Quality</span>
+                    <p className="text-xs text-subdued mt-0.5">Access to high-quality schools and universities</p>
+                  </span>
+                </label>
+              </div>
+            </div>
+            
+            {/* Refinement Section */}
+            <div className="mt-8 border-t border-gray-200 pt-8">
+              <h3 className="text-h5 font-heading text-primary mb-4">Want more tailored recommendations?</h3>
+              
+              <button
+                type="button"
+                onClick={fetchFollowUpQuestions}
+                className="px-4 py-2 bg-secondary hover:bg-secondary/90 text-white rounded-lg transition flex items-center mb-4"
+                disabled={loadingFollowUp}
+              >
+                {loadingFollowUp ? (
+                  <><div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div> Loading...</>
+                ) : (
+                  <>Get Follow-Up Questions</>
+                )}
+              </button>
+              
+              {followUpError && <p className="text-error text-sm mb-4">{followUpError}</p>}
+              
+              {/* Follow-up questions */}
+              {followUpQuestions.length > 0 && (
+                <div className="space-y-4 mt-6 p-4 bg-background rounded-lg">
+                  <h3 className="text-h5 font-heading text-primary">Follow-Up Questions:</h3>
+                  {followUpQuestions.map((question, index) => (
+                    <div key={index} className="bg-surface p-3 rounded-lg">
+                      <label className="block text-primary mb-2">{question}</label>
+                      <input
+                        type="text"
+                        onChange={(e) => handleQuestionResponse(index.toString(), e.target.value)}
+                        className="border border-subdued p-2 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                        placeholder="Your answer..."
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            <div className="flex justify-between mt-8">
+              <button
+                type="button"
+                onClick={prevSection}
+                className="px-6 py-3 border border-primary text-primary rounded-lg hover:bg-primary/10 transition flex items-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                Previous
+              </button>
+              <button
+                type="submit"
+                className="px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition flex items-center"
+              >
+                Find My Perfect City
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+        
+        {error && <p className="text-error text-center mt-4">{error}</p>}
+      </div>
     </div>
   );
 };

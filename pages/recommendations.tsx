@@ -2,6 +2,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import CityComparisonChart from "../components/CityComparisonChart";
+import UserPreferencesDonut from "../components/UserPreferencesDonut";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Recommendations = () => {
@@ -12,17 +13,18 @@ const Recommendations = () => {
   const [error, setError] = useState("");
   const [feedback, setFeedback] = useState({ rating: 1, comment: "" });
   const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
+  const [aggregatedPreferences, setAggregatedPreferences] = useState<{ [key: string]: number }>({});
+  const [mounted, setMounted] = useState(false);
 
+  // Fetch the recommended cities
   useEffect(() => {
+    setMounted(true);
     const fetchCities = async () => {
       setLoading(true);
       setError("");
 
       try {
-        // Using the full URL to reach your Django API
-        const res = await fetch(
-          `http://127.0.0.1:8000/api/recommend-cities/?${searchParams.toString()}`
-        );
+        const res = await fetch(`http://127.0.0.1:8000/api/recommend-cities/?${searchParams.toString()}`);
         if (!res.ok) {
           throw new Error(`Error fetching recommendations: ${res.status}`);
         }
@@ -39,120 +41,132 @@ const Recommendations = () => {
     fetchCities();
   }, [searchParams]);
 
+  // Fetch aggregated feedback (for the donut chart)
+  useEffect(() => {
+    const fetchAggregatedPreferences = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/aggregate-feedback/");
+        if (!res.ok) {
+          throw new Error(`Error fetching feedback aggregation: ${res.status}`);
+        }
+        const data = await res.json();
+        setAggregatedPreferences(data);
+      } catch (err) {
+        console.error("Failed to fetch aggregated preferences:", err);
+      }
+    };
+
+    fetchAggregatedPreferences();
+  }, []);
+
   const handleCityClick = (cityName: string) => {
-    // Navigate to the city details page using the city name.
     router.push(`/city-details/${encodeURIComponent(cityName)}`);
   };
 
-  const handleFeedbackSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Replace this URL with the actual URL for submitting feedback
-    const response = await fetch("http://127.0.0.1:8000/api/feedback/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        rating: feedback.rating,
-        comment: feedback.comment,
-      }),
-    });
-
-    if (response.ok) {
-      setIsFeedbackSubmitted(true);
-      alert("Feedback submitted successfully!");
-    } else {
-      alert("Failed to submit feedback.");
-    }
-  };
-
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-h1 font-heading mb-4">Recommended Cities</h1>
+    <div className="container mx-auto px-6 py-8">
+      <div className="gradient-header mb-10">
+        <h1 className="text-h1 font-heading text-center">Recommended Cities</h1>
+        <p className="text-center mt-2 opacity-90">Cities that match your preferences</p>
+      </div>
+      
       {loading ? (
-        <LoadingSpinner />
+        <div className="flex flex-col items-center justify-center py-20">
+          <LoadingSpinner />
+          <p className="mt-4 text-subdued">Finding your ideal cities...</p>
+        </div>
       ) : error ? (
-        <p className="text-body text-error">{error}</p>
+        <div className="bg-error/10 border-l-4 border-error p-4 rounded-lg">
+          <p className="text-body text-error">{error}</p>
+        </div>
       ) : cities.length === 0 ? (
-        <p className="text-body">No matching cities found.</p>
+        <div className="bg-skyblue/10 border-l-4 border-skyblue p-6 rounded-lg text-center">
+          <p className="text-body">No matching cities found based on your criteria.</p>
+          <button 
+            onClick={() => router.push('/preferences')}
+            className="mt-4 bg-skyblue hover:bg-skyblue/90 text-white px-4 py-2 rounded-lg"
+          >
+            Adjust Your Preferences
+          </button>
+        </div>
       ) : (
-        <>
-          <ul className="list-none p-0 space-y-4">
+        <div className={`space-y-12 ${mounted ? 'animate-fade-in' : ''}`}>
+          {/* City Cards Grid */}
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {cities.map((city, index) => (
               <li
                 key={index}
-                className="cursor-pointer mb-4 p-4 border border-subdued rounded-medium shadow-subtle hover:bg-accent/10"
+                className="cursor-pointer p-6 bg-surface rounded-xl shadow-medium hover:shadow-lg transform transition-all duration-300 hover:-translate-y-2 border-l-4 border-accent"
                 onClick={() => handleCityClick(city.name)}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <strong className="text-h3">
-                  {city.name}, {city.country}
-                </strong>
-                <p className="text-body">Safety Index: {city.safety_index}</p>
-                <p className="text-body">
-                  Quality of Life: {city.quality_of_life_index}
-                </p>
-                <p className="text-body">
-                  Average Salary: ${city.average_salary}
-                </p>
-                <p className="text-body">
-                  Average Rent: ${city.average_rent}
-                </p>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h2 className="text-h3 font-heading text-primary mb-2">
+                      {city.name}
+                    </h2>
+                    <p className="text-subdued mb-4">{city.country}</p>
+                  </div>
+                  <div className="bg-primary/10 text-primary font-bold px-3 py-1 rounded-full">
+                    {city.match_score ? `${Math.round(city.match_score * 100)}% Match` : 'Recommended'}
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Safety</p>
+                    <p className="text-lg font-bold">{city.safety_index}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Quality of Life</p>
+                    <p className="text-lg font-bold">{city.quality_of_life_index}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Salary</p>
+                    <p className="text-lg font-bold">${city.average_salary}</p>
+                  </div>
+                  <div className="bg-background p-3 rounded-lg">
+                    <p className="text-subdued text-sm">Rent</p>
+                    <p className="text-lg font-bold">${city.average_rent}</p>
+                  </div>
+                </div>
+                
+                <button className="mt-6 w-full bg-accent hover:bg-accent/90 text-white py-2 px-4 rounded-lg">
+                  View Details
+                </button>
               </li>
             ))}
           </ul>
-          <h2 className="text-h2 font-medium mt-8 mb-4 text-center">
-            Compare City Metrics
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <CityComparisonChart cities={cities} />
+          
+          {/* Charts Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* City Comparison Chart */}
+            <div className="bg-surface p-8 rounded-xl shadow-medium">
+              <h2 className="text-h2 font-heading text-primary mb-6 text-center">
+                Compare City Metrics
+              </h2>
+              <CityComparisonChart cities={cities} />
+            </div>
+            
+            {/* User Preferences Donut */}
+            <div className="bg-surface p-8 rounded-xl shadow-medium">
+              <h2 className="text-h2 font-heading text-primary mb-6 text-center">
+                User Preference Breakdown
+              </h2>
+              <UserPreferencesDonut data={aggregatedPreferences} />
+            </div>
           </div>
-
-          {/* Feedback Form */}
-          {!isFeedbackSubmitted && (
-            <div className="mt-8">
-              <h2 className="text-h2 font-medium mb-4">Provide Feedback</h2>
-              <form onSubmit={handleFeedbackSubmit}>
-                <div>
-                  <label className="block">Rating (1 to 5)</label>
-                  <select
-                    value={feedback.rating}
-                    onChange={(e) => setFeedback({ ...feedback, rating: Number(e.target.value) })}
-                    className="w-full border p-2 rounded"
-                  >
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="mt-4">
-                  <label className="block">Comment (Optional)</label>
-                  <textarea
-                    value={feedback.comment}
-                    onChange={(e) => setFeedback({ ...feedback, comment: e.target.value })}
-                    className="w-full border p-2 rounded"
-                    placeholder="Share your thoughts on the recommendation."
-                  />
-                </div>
-                <div className="mt-4">
-                  <button
-                    type="submit"
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Submit Feedback
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
-          {isFeedbackSubmitted && (
-            <div className="mt-8 text-center">
-              <p>Thank you for your feedback!</p>
-            </div>
-          )}
-        </>
+          
+          {/* Action Button */}
+          <div className="flex justify-center">
+            <button 
+              onClick={() => router.push('/preferences')}
+              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl shadow-lg"
+            >
+              Refine Your Search
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
