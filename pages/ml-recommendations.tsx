@@ -14,19 +14,71 @@ export default function MLRecommendations() {
 
   useEffect(() => {
     setMounted(true);
-    
+  
     const fetchMLRecommendations = async () => {
       setLoading(true);
       setError("");
-
+  
       try {
-        const res = await fetch(
-          `http://127.0.0.1:8000/api/ml-recommendations/?${searchParams.toString()}`
-        );
+        // Build the request URL properly
+        const params = new URLSearchParams(searchParams.toString());
+        
+        // Get specific parameters that influence recommendations
+        const followupResponses = searchParams.get('followup_responses');
+if (followupResponses) {
+  try {
+    // Make sure we're not duplicating parameters
+    if (!params.has('followup_responses')) {
+      params.append('followup_responses', followupResponses);
+    }
+    
+    // Extract country mentions to add as explicit parameters
+    const responses = JSON.parse(followupResponses);
+    
+    // Process responses for specific country mentions
+    for (const [questionIdx, response] of Object.entries(responses)) {
+      const responseText = String(response).toLowerCase();
+      
+      // Look for country mentions
+      const countryMentions = [
+        "malaysia", "singapore", "japan", "australia", "usa", "uk", 
+        "canada", "germany", "france", "dubai", "spain", "italy"
+      ];
+      
+      countryMentions.forEach(country => {
+        if (responseText.includes(country.toLowerCase())) {
+          params.append('preferred_country', country);
+          console.log(`Detected interest in ${country} from response`);
+        }
+      });
+      
+      // Check for other preferences
+      if (responseText.includes("safe") || responseText.includes("security")) {
+        params.append('safety_priority', 'high');
+      }
+      
+      if (responseText.includes("job") || responseText.includes("career") || responseText.includes("work")) {
+        params.append('job_priority', 'high');
+      }
+    }
+    
+    console.log("Processed follow-up responses:", followupResponses);
+  } catch (error) {
+    console.error("Error handling followup responses:", error);
+  }
+}
+        
+        // Log parameters being sent (for debugging)
+        console.log("Sending parameters:", Object.fromEntries(params.entries()));
+        
+        const res = await fetch(`http://127.0.0.1:8000/api/ml-recommendations/?${params.toString()}`);
+        
         if (!res.ok) {
           throw new Error(`Error fetching ML recommendations: ${res.status}`);
         }
+        
         const data = await res.json();
+        console.log("Received cities:", data.recommended_cities);
         setCities(data.recommended_cities || []);
       } catch (err) {
         console.error("Failed to fetch ML recommendations:", err);
@@ -35,10 +87,9 @@ export default function MLRecommendations() {
         setLoading(false);
       }
     };
-
+  
     fetchMLRecommendations();
   }, [searchParams]);
-
   const handleCityClick = (cityName: string) => {
     router.push(`/city-details/${encodeURIComponent(cityName)}`);
   };

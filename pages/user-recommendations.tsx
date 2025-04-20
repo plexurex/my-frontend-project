@@ -68,7 +68,7 @@ const UserRecommendations = () => {
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex-1">
-              <h2 className="text-h4 font-heading text-primary">Browse {recommendations.length} User Reviews</h2>
+              <h2 className="text-h4 font-heading text-primary">Browse User Reviews</h2>
               <p className="text-subdued mt-1">Discover insights from people who've been there</p>
             </div>
             <div className="w-full md:w-auto">

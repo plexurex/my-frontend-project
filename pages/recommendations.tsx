@@ -67,7 +67,7 @@ const Recommendations = () => {
     <div className="container mx-auto px-6 py-8">
       <div className="gradient-header mb-10">
         <h1 className="text-h1 font-heading text-center">Recommended Cities</h1>
-        <p className="text-center mt-2 opacity-90">Cities that match your preferences</p>
+        <p className="text-center mt-2 opacity-90">Cities to consider for your journey</p>
       </div>
       
       {loading ? (

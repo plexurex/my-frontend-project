@@ -8,16 +8,10 @@ const Preferences = () => {
   const [activeSection, setActiveSection] = useState(1);
   const [mounted, setMounted] = useState(false);
 
-  // Rent and salary limits from countries.json data
-  const RENT_MIN = 0;
-  const RENT_MAX = 3000; // Setting slightly higher than max found ($2500)
-  const SALARY_MIN = 0;
-  const SALARY_MAX = 7000; // Setting slightly higher than max found ($6200)
-
-  // User preferences state
+  // User preferences state with budget and income tiers instead of specific values
   const [preferences, setPreferences] = useState({
-    rent: "",
-    salary: "",
+    budgetTier: "medium", // "low", "medium", "high"
+    incomeTier: "medium", // "low", "medium", "high"
     amenities: [] as string[],
     mosques_nearby: false,
     churches_nearby: false,
@@ -87,38 +81,6 @@ const Preferences = () => {
     setMounted(true);
   }, []);
 
-  // Handle rent input change with validation
-  const handleRentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    
-    // Empty value is allowed (clear field)
-    if (value === "") {
-      setPreferences({ ...preferences, rent: value });
-      return;
-    }
-    
-    const numValue = parseInt(value);
-    if (!isNaN(numValue) && numValue >= RENT_MIN && numValue <= RENT_MAX) {
-      setPreferences({ ...preferences, rent: value });
-    }
-  };
-  
-  // Handle salary input change with validation
-  const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    
-    // Empty value is allowed (clear field)
-    if (value === "") {
-      setPreferences({ ...preferences, salary: value });
-      return;
-    }
-    
-    const numValue = parseInt(value);
-    if (!isNaN(numValue) && numValue >= SALARY_MIN && numValue <= SALARY_MAX) {
-      setPreferences({ ...preferences, salary: value });
-    }
-  };
-
   // Handles checkbox updates for preferences
   const handleCheckboxChange = (key: keyof typeof preferences) => {
     setPreferences((prev) => ({
@@ -127,19 +89,16 @@ const Preferences = () => {
     }));
   };
 
-  // Handles form submission (final submission uses only basic preferences)
+  // Handles form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   
-    // Merge the basic preferences with follow-up responses.
-    const allFilters = { ...preferences };
-    
     // Create URLSearchParams
     const params = new URLSearchParams();
     
-    // Add rent and salary if present
-    if (preferences.rent) params.set('rent', preferences.rent);
-    if (preferences.salary) params.set('salary', preferences.salary);
+    // Add budget and income tiers
+    params.set('budgetTier', preferences.budgetTier);
+    params.set('incomeTier', preferences.incomeTier);
     
     // Add amenities as a comma-separated list
     if (preferences.amenities.length > 0) {
@@ -154,10 +113,9 @@ const Preferences = () => {
     });
     
     // Add all follow-up responses
-    Object.entries(userResponses).forEach(([key, value]) => {
-      params.set(`followup_${key}`, value);
-    });
-    
+    if (Object.keys(userResponses).length > 0) {
+      params.set('followup_responses', JSON.stringify(userResponses));
+    }
     // Choose endpoint based on whether follow-up responses are present
     const endpoint = Object.keys(userResponses).length > 0 
       ? '/ml-recommendations' 
@@ -179,7 +137,7 @@ const Preferences = () => {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({ preferences }), // Notice the preferences is wrapped in an object
+        body: JSON.stringify({ preferences }),
         cache: "no-cache",
       });
 
@@ -255,37 +213,31 @@ const Preferences = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="block font-medium text-primary mb-1">Maximum Rent (USD):</label>
-                <div className="relative">
-                  <span className="absolute left-3 top-3 text-subdued">$</span>
-                  <input
-                    type="number"
-                    value={preferences.rent}
-                    onChange={handleRentChange}
-                    min={RENT_MIN}
-                    max={RENT_MAX}
-                    className="border border-subdued p-2 pl-8 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                    placeholder="e.g. 2000"
-                  />
-                </div>
-                <p className="text-xs text-subdued italic">Maximum monthly rent you're willing to pay (0-{RENT_MAX} USD)</p>
+                <label className="block font-medium text-primary mb-1">Cost of Living Preference:</label>
+                <select
+                  value={preferences.budgetTier}
+                  onChange={(e) => setPreferences({ ...preferences, budgetTier: e.target.value })}
+                  className="border border-subdued p-3 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                >
+                  <option value="low">Budget-friendly (Lower cost cities)</option>
+                  <option value="medium">Moderate (Average cost cities)</option>
+                  <option value="high">Premium (Higher cost cities)</option>
+                </select>
+                <p className="text-xs text-subdued italic">Choose your preferred living cost range</p>
               </div>
               
               <div className="space-y-2">
-                <label className="block font-medium text-primary mb-1">Minimum Salary (USD):</label>
-                <div className="relative">
-                  <span className="absolute left-3 top-3 text-subdued">$</span>
-                  <input
-                    type="number"
-                    value={preferences.salary}
-                    onChange={handleSalaryChange}
-                    min={SALARY_MIN}
-                    max={SALARY_MAX}
-                    className="border border-subdued p-2 pl-8 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
-                    placeholder="e.g. 2000"
-                  />
-                </div>
-                <p className="text-xs text-subdued italic">Minimum monthly salary you'd expect (0-{SALARY_MAX} USD)</p>
+                <label className="block font-medium text-primary mb-1">Income Expectation:</label>
+                <select
+                  value={preferences.incomeTier}
+                  onChange={(e) => setPreferences({ ...preferences, incomeTier: e.target.value })}
+                  className="border border-subdued p-3 rounded-lg w-full focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                >
+                  <option value="low">Entry-level income</option>
+                  <option value="medium">Mid-range income</option>
+                  <option value="high">High income</option>
+                </select>
+                <p className="text-xs text-subdued italic">What income level are you expecting?</p>
               </div>
             </div>
             
@@ -405,36 +357,6 @@ const Preferences = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={preferences.mosques_nearby}
-                    onChange={() => handleCheckboxChange("mosques_nearby")}
-                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
-                  />
-                  <span>
-                    <span className="font-medium">Mosques Nearby</span>
-                    <p className="text-xs text-subdued mt-0.5">Access to local mosques and Islamic centers</p>
-                  </span>
-                </label>
-              </div>
-              
-              <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
-                <label className="flex items-center space-x-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={preferences.churches_nearby}
-                    onChange={() => handleCheckboxChange("churches_nearby")}
-                    className="form-checkbox text-accent rounded focus:ring-accent h-5 w-5"
-                  />
-                  <span>
-                    <span className="font-medium">Churches Nearby</span>
-                    <p className="text-xs text-subdued mt-0.5">Access to local churches and Christian communities</p>
-                  </span>
-                </label>
-              </div>
-              
               <div className="bg-background p-4 rounded-lg hover:shadow-md transition-all">
                 <label className="flex items-center space-x-3 cursor-pointer">
                   <input

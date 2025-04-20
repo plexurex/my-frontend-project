@@ -242,6 +242,11 @@ const RecommendationForm = () => {
             <span className="ml-2 text-lg font-semibold text-primary">{value}/5</span>
           </div>
         </div>
+        {/* Add labels for clarity */}
+        <div className="flex justify-between mt-2 text-sm text-subdued">
+          <span>1 - Poor</span>
+          <span>5 - Excellent</span>
+        </div>
       </div>
     );
   };

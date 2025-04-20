@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -12,6 +12,11 @@ const SearchCountry = () => {
   const [error, setError] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [allCountries, setAllCountries] = useState<string[]>([]);
+  const [filteredCountries, setFilteredCountries] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const suggestionRef = useRef<HTMLDivElement>(null);
+  
   const [popularCountries, setPopularCountries] = useState([
     "United States", "United Kingdom", "Canada", "Australia", 
     "Germany", "Japan", "Singapore", "United Arab Emirates"
@@ -24,19 +29,68 @@ const SearchCountry = () => {
     if (savedSearches) {
       setRecentSearches(JSON.parse(savedSearches));
     }
+    
+    // Fetch all available countries for autocomplete
+    fetchAllCountries();
+    
+    // Add click event listener to hide suggestions when clicking outside
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
+  
+  const fetchAllCountries = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/get-countries/");
+      if (!res.ok) {
+        throw new Error("Failed to fetch countries");
+      }
+      const data = await res.json();
+      if (data.countries) {
+        const countryNames = data.countries.map((country: any) => country.name);
+        setAllCountries(countryNames);
+      }
+    } catch (err) {
+      console.error("Error fetching countries:", err);
+    }
+  };
+  
+  const handleClickOutside = (event: MouseEvent) => {
+    if (suggestionRef.current && !suggestionRef.current.contains(event.target as Node)) {
+      setShowSuggestions(false);
+    }
+  };
+  
+  useEffect(() => {
+    if (searchQuery) {
+      const filtered = allCountries.filter(country => 
+        country.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredCountries(filtered);
+      setShowSuggestions(true);
+    } else {
+      setFilteredCountries([]);
+      setShowSuggestions(false);
+    }
+  }, [searchQuery, allCountries]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
+    await performSearch(searchQuery);
+  };
+  
+  const performSearch = async (country: string) => {
+    if (!country.trim()) return;
     
     setLoading(true);
     setError("");
     setResult(null);
+    setShowSuggestions(false);
     
     try {
       // Call your backend endpoint to fetch cities for the given country
-      const res = await fetch(`http://127.0.0.1:8000/api/countries/${encodeURIComponent(searchQuery.trim())}/cities/`);
+      const res = await fetch(`http://127.0.0.1:8000/api/countries/${encodeURIComponent(country.trim())}/cities/`);
       
       if (!res.ok) {
         throw new Error("Country not found or error occurred");
@@ -46,7 +100,7 @@ const SearchCountry = () => {
       setResult(data);
       
       // Save this search to recent searches
-      const updatedSearches = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5);
+      const updatedSearches = [country, ...recentSearches.filter(s => s !== country)].slice(0, 5);
       setRecentSearches(updatedSearches);
       localStorage.setItem("recentCountrySearches", JSON.stringify(updatedSearches));
       
@@ -59,8 +113,13 @@ const SearchCountry = () => {
 
   const handleQuickSearch = (country: string) => {
     setSearchQuery(country);
-    // Submit the form programmatically
-    handleSearch(new Event('submit') as any);
+    performSearch(country);
+  };
+  
+  const selectSuggestion = (country: string) => {
+    setSearchQuery(country);
+    setShowSuggestions(false);
+    performSearch(country);
   };
 
   return (
@@ -90,6 +149,24 @@ const SearchCountry = () => {
                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                   </svg>
                 </div>
+                
+                {/* Country Suggestions Dropdown */}
+                {showSuggestions && filteredCountries.length > 0 && (
+                  <div 
+                    ref={suggestionRef}
+                    className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base overflow-auto focus:outline-none sm:text-sm"
+                  >
+                    {filteredCountries.map((country, index) => (
+                      <div
+                        key={index}
+                        className="cursor-pointer px-4 py-2 hover:bg-primary/10 transition-colors"
+                        onClick={() => selectSuggestion(country)}
+                      >
+                        {country}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             <button 
@@ -165,15 +242,6 @@ const SearchCountry = () => {
                 <h2 className="text-h2 font-heading text-primary">{result.country}</h2>
                 <p className="text-subdued">{result.cities.length} Cities Available</p>
               </div>
-              <Link 
-                href={`/country-details/${encodeURIComponent(result.country)}`}
-                className="mt-3 md:mt-0 px-4 py-2 bg-primary text-white rounded-lg inline-flex items-center hover:bg-primary/90 transition-colors"
-              >
-                Country Details
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </Link>
             </div>
             
             {result.cities && result.cities.length > 0 ? (
@@ -208,15 +276,15 @@ const SearchCountry = () => {
             {/* Compare Cities Button */}
             {result.cities && result.cities.length > 1 && (
               <div className="mt-8 text-center">
-                <button 
-                  onClick={() => router.push(`/compare-cities/${encodeURIComponent(result.country)}`)}
+                <Link 
+                  href={`/compare-cities/${encodeURIComponent(result.country)}`}
                   className="px-6 py-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg inline-flex items-center transition-all transform hover:-translate-y-1"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
                   </svg>
                   Compare Cities in {result.country}
-                </button>
+                </Link>
               </div>
             )}
           </div>
