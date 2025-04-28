@@ -1,4 +1,4 @@
-// components/CityComparisonChart.tsx
+// CityComparisonChart.tsx
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -22,7 +22,7 @@ interface CityComparisonChartProps {
     quality_of_life_index: number;
   }[];
 }
-
+// CityComparisonChart.tsx
 const CityComparisonChart: React.FC<CityComparisonChartProps> = ({ cities }) => {
   const labels = cities.map((city) => city.name);
 

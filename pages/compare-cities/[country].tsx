@@ -206,13 +206,13 @@ const CompareCities = () => {
                     ))}
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
-                    <td className="py-3 px-4 font-medium">Average Rent</td>
+                    <td className="py-3 px-4 font-medium">Average Monthly Rent</td>
                     {selectedCities.map((city, index) => (
                       <td key={index} className="py-3 px-4">{formatValue(city.average_rent, 'money')}</td>
                     ))}
                   </tr>
                   <tr className="border-b border-gray-200 hover:bg-gray-50">
-                    <td className="py-3 px-4 font-medium">Average Salary</td>
+                    <td className="py-3 px-4 font-medium">Average Monthly Salary</td>
                     {selectedCities.map((city, index) => (
                       <td key={index} className="py-3 px-4">{formatValue(city.average_salary, 'money')}</td>
                     ))}

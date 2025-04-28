@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+// About Page
 const AboutPage = () => {
   const [mounted, setMounted] = useState(false);
 

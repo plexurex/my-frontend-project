@@ -25,8 +25,8 @@ const RecommendationForm = () => {
     accessibility_rating: 3,
     quality_of_life_rating: 3,
     user_name: "",
-    gender: "", // New field for gender
-    age: "" // New field for age
+    gender: "", 
+    age: "" 
   });
 
   // UI states
@@ -454,7 +454,6 @@ const RecommendationForm = () => {
             <h2 className="text-h3 font-heading text-primary mb-8 text-center">Almost Done!</h2>
             
             <div className="space-y-6">
-              {/* New Gender Selection */}
               <div className="mb-6">
                 <label className="block text-primary font-medium mb-2">Gender<span className="text-error">*</span></label>
                 <div className="flex gap-4">

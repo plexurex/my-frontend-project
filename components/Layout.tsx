@@ -7,7 +7,7 @@ interface LayoutProps {
   children: React.ReactNode;
   title?: string;
 }
-
+//// Layout.tsx 
 const Layout: React.FC<LayoutProps> = ({ children, title = "Migration Recommender" }) => {
   const router = useRouter();
   

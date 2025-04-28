@@ -122,11 +122,11 @@ const Recommendations = () => {
                     <p className="text-lg font-bold">{city.quality_of_life_index}</p>
                   </div>
                   <div className="bg-background p-3 rounded-lg">
-                    <p className="text-subdued text-sm">Salary</p>
+                    <p className="text-subdued text-sm">Average Monthly Salary</p>
                     <p className="text-lg font-bold">${city.average_salary}</p>
                   </div>
                   <div className="bg-background p-3 rounded-lg">
-                    <p className="text-subdued text-sm">Rent</p>
+                    <p className="text-subdued text-sm">Average Monthly Rent</p>
                     <p className="text-lg font-bold">${city.average_rent}</p>
                   </div>
                 </div>

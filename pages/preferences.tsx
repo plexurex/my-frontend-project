@@ -33,47 +33,51 @@ const Preferences = () => {
   // List of all available amenities
   const availableAmenities = [
     "Airports",
+    "Banks/ATMs",
     "Beaches",
     "Cafes",
-    "City Centers",
-    "Co-working Spaces",
-    "Countryside",
-    "Cultural Attractions",
+    "Colonial Architecture",
+    "Community Centers",
+    "Convenience Stores",
+    "Cultural Centers",
+    "Cultural Sites",
+    "Educational Institutions",
     "Entertainment Districts",
-    "Fitness Centers",
-    "Forest Areas",
+    "Fire Stations",
     "Gyms",
-    "Healthcare Facilities",
+    "Harbor",
     "Historic Sites",
+    "Hospitals",
     "Hotels",
+    "Imperial Palaces",
     "Landmarks",
     "Libraries",
+    "Local Markets",
+    "Local Restaurants",
+    "Luxury Resorts",
     "Markets",
+    "Mosques",
     "Mountains",
     "Museums",
+    "Music Venues",
     "Nightlife",
+    "Opera Houses",
     "Parks",
-    "Public Pools",
+    "Ports",
+    "Post Offices",
+    "Public Libraries",
+    "Public Transport",
     "Pyramids",
-    "Residential Areas",
     "Restaurants",
-    "Riverside Walks",
-    "Saunas",
-    "Schools",
-    "Sea Corniche",
-    "Seaside Views",
-    "Seaside Walks",
+    "Resort Beaches",
+    "Security Services",
     "Shopping Centers",
     "Shopping Districts",
-    "Ski Resorts",
     "Souks",
-    "Sports Venues",
     "Temples",
     "Theaters",
-    "Thermal Springs",
-    "Universities",
-    "Wineries"
   ];
+  
 
   const [selectedAmenity, setSelectedAmenity] = useState("");
 
@@ -155,7 +159,6 @@ const Preferences = () => {
     }
   };
 
-  // Handle user response to a follow-up question (use index as key)
   const handleQuestionResponse = (questionIndex: string, answer: string) => {
     setUserResponses((prev) => ({
       ...prev,
@@ -461,7 +464,7 @@ const Preferences = () => {
                 {loadingFollowUp ? (
                   <><div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div> Loading...</>
                 ) : (
-                  <>Get Follow-Up Questions</>
+                  <>Get Follow-Up-Questions</>
                 )}
               </button>
               

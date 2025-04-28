@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
+// User Recommendation review
 interface Recommendation {
   id: number;
   country_name: string;

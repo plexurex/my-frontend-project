@@ -20,14 +20,11 @@ export default function MLRecommendations() {
       setError("");
   
       try {
-        // Build the request URL properly
         const params = new URLSearchParams(searchParams.toString());
         
-        // Get specific parameters that influence recommendations
         const followupResponses = searchParams.get('followup_responses');
 if (followupResponses) {
   try {
-    // Make sure we're not duplicating parameters
     if (!params.has('followup_responses')) {
       params.append('followup_responses', followupResponses);
     }
@@ -138,17 +135,17 @@ if (followupResponses) {
                     <p className="text-subdued mb-4">{city.country}</p>
                   </div>
                   <div className="bg-primary/10 text-primary font-bold px-3 py-1 rounded-full">
-                    {Math.round(city.similarity * 100)}% Match
+                    {Math.min(Math.round(city.similarity * 100), 100)}% Match
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <div className="bg-background p-3 rounded-lg">
-                    <p className="text-subdued text-sm">Salary</p>
+                    <p className="text-subdued text-sm"> Average Monthly Salary</p>
                     <p className="text-lg font-bold">${city.average_salary}</p>
                   </div>
                   <div className="bg-background p-3 rounded-lg">
-                    <p className="text-subdued text-sm">Rent</p>
+                    <p className="text-subdued text-sm">Average Monthly Rent</p>
                     <p className="text-lg font-bold">${city.average_rent}</p>
                   </div>
                   <div className="bg-background p-3 rounded-lg">
@@ -181,6 +178,7 @@ if (followupResponses) {
                   quality_of_life_index: city.quality_of_life_index,
                 }))}
               />
+              
             </div>
           </div>
           

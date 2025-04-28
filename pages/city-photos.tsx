@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-
+// API to get photos on specefic city
 const CityPhotos = () => {
   const searchParams = useSearchParams();
   const cityName = searchParams.get("city") || "";

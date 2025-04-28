@@ -89,7 +89,6 @@ const SearchCountry = () => {
     setShowSuggestions(false);
     
     try {
-      // Call your backend endpoint to fetch cities for the given country
       const res = await fetch(`http://127.0.0.1:8000/api/countries/${encodeURIComponent(country.trim())}/cities/`);
       
       if (!res.ok) {
@@ -99,7 +98,6 @@ const SearchCountry = () => {
       const data = await res.json();
       setResult(data);
       
-      // Save this search to recent searches
       const updatedSearches = [country, ...recentSearches.filter(s => s !== country)].slice(0, 5);
       setRecentSearches(updatedSearches);
       localStorage.setItem("recentCountrySearches", JSON.stringify(updatedSearches));

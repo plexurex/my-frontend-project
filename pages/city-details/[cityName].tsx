@@ -12,12 +12,10 @@ const RecommendationModal = ({ cityName, onClose }: { cityName: string, onClose:
   const [experience, setExperience] = useState(3);
   const [additionalFeedback, setAdditionalFeedback] = useState('');
   const [importantPreference, setImportantPreference] = useState('Safety'); // default value
- // New state variables
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
   const [recommendToOthers, setRecommendToOthers] = useState('');
   const [lengthOfStay, setLengthOfStay] = useState('');
-
   const preferenceOptions = ["Safety", "Cost of Living", "Quality of Life", "Healthcare", "Education"];
   const ageRanges = ["Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65 or over"];
   const recommendationOptions = ["Yes", "No", "Maybe"];
@@ -53,7 +51,7 @@ const RecommendationModal = ({ cityName, onClose }: { cityName: string, onClose:
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50" onClick={onClose}>
       <div className="bg-white rounded-xl p-8 max-w-md w-full shadow-2xl overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-h3 font-heading text-primary mb-6 text-center">Rate {cityName}</h2>
+        <h2 className="text-h3 font-heading text-primary mb-6 text-center">Rate Recommendation</h2>
 
         {/* Gender Selection */}
         <div className="mb-6">
@@ -475,12 +473,12 @@ const CityDetails = () => {
               
               <div className="grid grid-cols-2 gap-2">
                 <div className="p-3 bg-background rounded-lg">
-                  <div className="text-sm text-subdued">Avg. Salary</div>
+                  <div className="text-sm text-subdued">Average Monthly Salary</div>
                   <div className="font-bold text-lg">${cityDetails.average_salary?.toLocaleString() || 'N/A'}</div>
                 </div>
                 
                 <div className="p-3 bg-background rounded-lg">
-                  <div className="text-sm text-subdued">Avg. Rent</div>
+                  <div className="text-sm text-subdued">Average Monthly Rent</div>
                   <div className="font-bold text-lg">${cityDetails.average_rent?.toLocaleString() || 'N/A'}</div>
                 </div>
               </div>

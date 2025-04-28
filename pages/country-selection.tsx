@@ -5,23 +5,23 @@ export default function CountrySelection() {
   const router = useRouter();
   const [countries, setCountries] = useState<{ name: string; average_salary: number | "N/A" }[]>([]);
   const [filteredCountries, setFilteredCountries] = useState<{ name: string; average_salary: number | "N/A" }[]>([]);
-  const [selectedCountry, setSelectedCountry] = useState(""); // User-selected country
-  const [userBudget, setUserBudget] = useState<number | null>(null); // Budget from localStorage
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState<string | null>(null); // Error state
+  const [selectedCountry, setSelectedCountry] = useState(""); 
+  const [userBudget, setUserBudget] = useState<number | null>(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState<string | null>(null); 
 
   useEffect(() => {
-    // Retrieve user preferences (including budget) from localStorage
+   
     const savedPreferences = localStorage.getItem("preferences");
     if (savedPreferences) {
       const parsedPreferences = JSON.parse(savedPreferences);
       if (parsedPreferences.salary) {
-        setUserBudget(parseFloat(parsedPreferences.salary)); // Get user budget
+        setUserBudget(parseFloat(parsedPreferences.salary)); 
       }
     }
 
-    // Fetch country data from the backend API
-    fetch("http://127.0.0.1:8000/api/get-countries/") // ✅ FIXED API ENDPOINT
+    
+    fetch("http://127.0.0.1:8000/api/get-countries/") 
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP status ${response.status}`);
@@ -29,10 +29,10 @@ export default function CountrySelection() {
         return response.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.countries)) { // ✅ Correctly access "countries" key
+        if (data && Array.isArray(data.countries)) { 
           console.log("DEBUG - Fetched Countries:", data.countries);
           setCountries(data.countries);
-          setFilteredCountries(data.countries); // Initially show all countries
+          setFilteredCountries(data.countries); 
         } else {
           throw new Error("Invalid API response format");
         }
@@ -45,7 +45,6 @@ export default function CountrySelection() {
   }, []);
 
   useEffect(() => {
-    // Apply filtering based on user budget
     if (userBudget !== null) {
       const filtered = countries.filter(
         (country) =>
@@ -60,7 +59,6 @@ export default function CountrySelection() {
   }, [userBudget, countries]);
 
   const handleSeeCities = () => {
-    // Navigate to the cities page for the selected country
     if (selectedCountry) {
       router.push(`/cities/${encodeURIComponent(selectedCountry)}`);
     }

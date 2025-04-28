@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
+// Filter 
 const FilteredCities = () => {
   const router = useRouter();
   const [cities, setCities] = useState<any[]>([]);
