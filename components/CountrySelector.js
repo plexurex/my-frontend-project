@@ -1,4 +1,4 @@
-// components/CountrySelector.js
+//CountrySelector 
 import React from 'react';
 
 function CountrySelector({ countries, selectedCountry, setSelectedCountry }) {

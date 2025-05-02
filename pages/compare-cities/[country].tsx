@@ -14,7 +14,7 @@ type CityData = {
   cost_of_living_index: number;
   selected?: boolean;
 };
-
+// CompareCities
 const CompareCities = () => {
   const router = useRouter();
   const { country } = router.query;
