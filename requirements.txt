@@ -1,0 +1,14 @@
+# Frontend Dependencies (Node.js, for reference)
+next@13
+react
+react-dom
+tailwindcss
+autoprefixer
+postcss
+@headlessui/react
+@heroicons/react
+@react-google-maps/api
+chart.js
+react-chartjs-2
+axios
+dotenv
